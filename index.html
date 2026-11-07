@@ -6,10 +6,10 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=face-follow1">
+    <link rel="stylesheet" href="css/style.css?v=tags1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
-    <script defer src="js/main.js?v=stickers1"></script>
+    <script defer src="js/main.js?v=tags1"></script>
 </head>
 <body>
     <main class="app">
@@ -507,6 +507,274 @@
                 </div>
                 <footer class="screen-footer">
                     <button class="button button-dark" type="submit">Продолжить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen tag-screen" id="hobbies" aria-labelledby="hobbies-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="energy" aria-label="Вернуться к предыдущему вопросу">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Увлечения</p>
+            </header>
+            <div class="progress" role="img" aria-label="Увлечения — следующий шаг анкеты"><span></span></div>
+            <form class="question-form multi-choice-form" id="hobbies-form" data-max-choices="5" data-next-screen="friend-qualities">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="hobbies-title" tabindex="-1">Чем вы любите заниматься в свободное время?</legend>
+                        <p class="hint" id="hobbies-hint">Выберите до 5 вариантов</p>
+                        <div class="choices tag-choices">
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Музыка">
+                            <span class="emoji" aria-hidden="true">🎶</span>
+                            <span class="choice-text">Музыка</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Путешествия">
+                            <span class="emoji" aria-hidden="true">✈️</span>
+                            <span class="choice-text">Путешествия</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Кулинария и еда">
+                            <span class="emoji" aria-hidden="true">🍳</span>
+                            <span class="choice-text">Кулинария и еда</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Чай и кофе">
+                            <span class="emoji" aria-hidden="true">☕</span>
+                            <span class="choice-text">Чай и кофе</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Книги">
+                            <span class="emoji" aria-hidden="true">📚</span>
+                            <span class="choice-text">Книги</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Искусство и дизайн">
+                            <span class="emoji" aria-hidden="true">🎨</span>
+                            <span class="choice-text">Искусство и дизайн</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Фильмы и сериалы">
+                            <span class="emoji" aria-hidden="true">🎬</span>
+                            <span class="choice-text">Фильмы и сериалы</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Бег и фитнес">
+                            <span class="emoji" aria-hidden="true">🏃</span>
+                            <span class="choice-text">Бег и фитнес</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Йога и медитация">
+                            <span class="emoji" aria-hidden="true">🧘</span>
+                            <span class="choice-text">Йога и медитация</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Природа и походы">
+                            <span class="emoji" aria-hidden="true">🌿</span>
+                            <span class="choice-text">Природа и походы</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Видеоигры">
+                            <span class="emoji" aria-hidden="true">🎮</span>
+                            <span class="choice-text">Видеоигры</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Языки и культура">
+                            <span class="emoji" aria-hidden="true">💬</span>
+                            <span class="choice-text">Языки и культура</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Животные">
+                            <span class="emoji" aria-hidden="true">🐾</span>
+                            <span class="choice-text">Животные</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Технологии">
+                            <span class="emoji" aria-hidden="true">💡</span>
+                            <span class="choice-text">Технологии</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Фотография">
+                            <span class="emoji" aria-hidden="true">📸</span>
+                            <span class="choice-text">Фотография</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Коктейли">
+                            <span class="emoji" aria-hidden="true">🍸</span>
+                            <span class="choice-text">Коктейли</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Вино">
+                            <span class="emoji" aria-hidden="true">🍷</span>
+                            <span class="choice-text">Вино</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="hobbies" value="Пиво">
+                            <span class="emoji" aria-hidden="true">🍺</span>
+                            <span class="choice-text">Пиво</span>
+                        </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <p class="notice" role="status" aria-live="polite"></p>
+                    <button class="button button-dark" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen tag-screen" id="friend-qualities" aria-labelledby="friend-qualities-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="hobbies" aria-label="Вернуться к предыдущему вопросу">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Характер</p>
+            </header>
+            <div class="progress" role="img" aria-label="Характер — следующий шаг анкеты"><span></span></div>
+            <form class="question-form multi-choice-form" id="friend-qualities-form" data-max-choices="3" data-next-screen="self-qualities">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="friend-qualities-title" tabindex="-1">Какие качества вы больше всего цените в друге?</legend>
+                        <p class="hint" id="friend-qualities-hint">Выберите до 3 вариантов</p>
+                        <div class="choices tag-choices">
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Искренность">
+                            <span class="emoji" aria-hidden="true">🌟</span>
+                            <span class="choice-text">Искренность</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Внимательность">
+                            <span class="emoji" aria-hidden="true">👀</span>
+                            <span class="choice-text">Внимательность</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Харизма">
+                            <span class="emoji" aria-hidden="true">🤩</span>
+                            <span class="choice-text">Харизма</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Спокойствие">
+                            <span class="emoji" aria-hidden="true">🌿</span>
+                            <span class="choice-text">Спокойствие</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Увлечённость">
+                            <span class="emoji" aria-hidden="true">⚡</span>
+                            <span class="choice-text">Увлечённость</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Чувство юмора">
+                            <span class="emoji" aria-hidden="true">😂</span>
+                            <span class="choice-text">Чувство юмора</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Ум">
+                            <span class="emoji" aria-hidden="true">🧠</span>
+                            <span class="choice-text">Ум</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Теплота">
+                            <span class="emoji" aria-hidden="true">🔥</span>
+                            <span class="choice-text">Теплота</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Стиль">
+                            <span class="emoji" aria-hidden="true">😎</span>
+                            <span class="choice-text">Стиль</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="friend-qualities" value="Оптимизм">
+                            <span class="emoji" aria-hidden="true">🌈</span>
+                            <span class="choice-text">Оптимизм</span>
+                        </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <p class="notice" role="status" aria-live="polite"></p>
+                    <button class="button button-dark" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen tag-screen" id="self-qualities" aria-labelledby="self-qualities-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="friend-qualities" aria-label="Вернуться к предыдущему вопросу">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Характер</p>
+            </header>
+            <div class="progress" role="img" aria-label="Характер — следующий шаг анкеты"><span></span></div>
+            <form class="question-form multi-choice-form" id="self-qualities-form" data-max-choices="3">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="self-qualities-title" tabindex="-1">А за какие качества вас любят друзья?</legend>
+                        <p class="hint" id="self-qualities-hint">Выберите до 3 вариантов</p>
+                        <div class="choices tag-choices">
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Внимательность">
+                            <span class="emoji" aria-hidden="true">👀</span>
+                            <span class="choice-text">Внимательность</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Искренность">
+                            <span class="emoji" aria-hidden="true">🌟</span>
+                            <span class="choice-text">Искренность</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Харизма">
+                            <span class="emoji" aria-hidden="true">🤩</span>
+                            <span class="choice-text">Харизма</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Увлечённость">
+                            <span class="emoji" aria-hidden="true">⚡</span>
+                            <span class="choice-text">Увлечённость</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Спокойствие">
+                            <span class="emoji" aria-hidden="true">🌿</span>
+                            <span class="choice-text">Спокойствие</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Чувство юмора">
+                            <span class="emoji" aria-hidden="true">😂</span>
+                            <span class="choice-text">Чувство юмора</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Ум">
+                            <span class="emoji" aria-hidden="true">🧠</span>
+                            <span class="choice-text">Ум</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Стиль">
+                            <span class="emoji" aria-hidden="true">😎</span>
+                            <span class="choice-text">Стиль</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Теплота">
+                            <span class="emoji" aria-hidden="true">🔥</span>
+                            <span class="choice-text">Теплота</span>
+                        </label>
+                        <label class="choice tag">
+                            <input type="checkbox" name="self-qualities" value="Оптимизм">
+                            <span class="emoji" aria-hidden="true">🌈</span>
+                            <span class="choice-text">Оптимизм</span>
+                        </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <p class="notice" role="status" aria-live="polite"></p>
+                    <button class="button button-dark" type="submit" disabled>Продолжить</button>
                 </footer>
             </form>
         </section>

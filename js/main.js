@@ -328,7 +328,13 @@ document.getElementById("energy-back").addEventListener("click", function() {
 
 document.getElementById("energy-form").addEventListener("submit", function(event) {
     event.preventDefault()
-    // Следующий вопрос анкеты добавим после проверки этого экрана.
+
+    if (screenTransition) {
+        return
+    }
+
+    energyControl.stop()
+    showScreen(document.getElementById("hobbies"), document.getElementById("hobbies-title"))
 })
 
 function bounceSticker(sticker) {
@@ -364,6 +370,60 @@ for (const sticker of document.querySelectorAll(".sticker-button")) {
         if ((event.key === "Enter" || event.key === " ") && !event.repeat) {
             event.preventDefault()
             bounceSticker(sticker)
+        }
+    })
+}
+
+for (const multiForm of document.querySelectorAll(".multi-choice-form")) {
+    const inputs = multiForm.querySelectorAll('input[type="checkbox"]')
+    const button = multiForm.querySelector('button[type="submit"]')
+    const message = multiForm.querySelector(".notice")
+    const limit = Number(multiForm.dataset.maxChoices)
+
+    multiForm.addEventListener("change", function(event) {
+        const selected = [...inputs].filter(function(input) {
+            return input.checked
+        })
+
+        if (selected.length > limit) {
+            event.target.checked = false
+            message.textContent = "Можно выбрать не больше " + limit + " вариантов. Снимите один, чтобы выбрать другой."
+            return
+        }
+
+        message.textContent = ""
+        button.disabled = selected.length === 0
+    })
+
+    multiForm.addEventListener("submit", function(event) {
+        event.preventDefault()
+        const selected = [...inputs].filter(function(input) {
+            return input.checked
+        })
+
+        if (selected.length === 0 || selected.length > limit) {
+            return
+        }
+
+        if (multiForm.dataset.nextScreen) {
+            const next = document.getElementById(multiForm.dataset.nextScreen)
+            showScreen(next, next.querySelector("legend"))
+        }
+        // Последний переход подключим при добавлении следующего вопроса.
+    })
+}
+
+for (const backButton of document.querySelectorAll("[data-back-screen]")) {
+    backButton.addEventListener("click", function() {
+        if (screenTransition) {
+            return
+        }
+
+        const previous = document.getElementById(backButton.dataset.backScreen)
+        showScreen(previous, previous.querySelector('[tabindex="-1"]'))
+
+        if (previous === energy) {
+            energyControl.start()
         }
     })
 }
