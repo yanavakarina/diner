@@ -52,7 +52,6 @@ async function showScreen(screen, focusTarget) {
     const previous = currentScreen
     const previousProgress = previous.querySelector(".progress span")
     const previousWidth = previousProgress ? previousProgress.getBoundingClientRect().width : 0
-    const direction = [...screens].indexOf(screen) > [...screens].indexOf(previous) ? 1 : -1
 
     screen.hidden = false
     window.scrollTo(0, 0)
@@ -68,16 +67,18 @@ async function showScreen(screen, focusTarget) {
     previous.inert = true
     screen.inert = true
     const animations = []
-    const timing = { duration: 400, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+    const timing = { duration: 800, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
 
     try {
         animations.push(previous.animate([
-            { opacity: 1, transform: "translateX(0)" },
-            { opacity: 0, transform: "translateX(" + -direction * 20 + "px)" }
+            { opacity: 1, offset: 0 },
+            { opacity: 0, offset: 0.4 },
+            { opacity: 0, offset: 1 }
         ], timing))
         animations.push(screen.animate([
-            { opacity: 0, transform: "translateX(" + direction * 32 + "px)" },
-            { opacity: 1, transform: "translateX(0)" }
+            { opacity: 0, offset: 0 },
+            { opacity: 0, offset: 0.25 },
+            { opacity: 1, offset: 1 }
         ], timing))
 
         const progress = screen.querySelector(".progress span")

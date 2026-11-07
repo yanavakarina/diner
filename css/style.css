@@ -366,24 +366,24 @@ legend {
 
 @media (prefers-reduced-motion: no-preference) {
     .button {
-        transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
-                    box-shadow 240ms ease, filter 240ms ease, border-color 240ms ease;
+        transition: transform 380ms cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 450ms ease, filter 450ms ease, border-color 450ms ease;
     }
-    .button-dark::before { transition: opacity 280ms ease; }
-    .back, .back svg { transition: transform 220ms ease, background-color 220ms ease; }
+    .button-dark::before { transition: opacity 500ms ease; }
+    .back, .back svg { transition: transform 400ms ease, background-color 400ms ease; }
     .choice {
-        transition: background-color 240ms ease, border-color 240ms ease,
-                    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition: background-color 450ms ease, border-color 450ms ease,
+                    transform 380ms cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .check { transition: background-color 220ms ease, border-color 220ms ease; }
-    .check::after { transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
-    .email-field input { transition: border-color 240ms ease, box-shadow 240ms ease; }
+    .check { transition: background-color 400ms ease, border-color 400ms ease; }
+    .check::after { transition: opacity 360ms ease, transform 400ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .email-field input { transition: border-color 450ms ease, box-shadow 450ms ease; }
     .email-field input:focus { box-shadow: 0 0 0 3px #ded8ca80; }
-    .wheel-option { transition: color 160ms ease; }
-    #personalize:not([hidden]) .personalize-art { animation: gentle-appearance 650ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-    #personalize:not([hidden]) .success-label { animation: gentle-appearance 500ms 100ms ease both; }
-    #personalize:not([hidden]) .account-title { animation: gentle-appearance 500ms 150ms ease both; }
-    #personalize:not([hidden]) .personalize-description { animation: gentle-appearance 500ms 200ms ease both; }
+    .wheel-option { transition: color 300ms ease; }
+    #personalize:not([hidden]) .personalize-art { animation: gentle-appearance 1100ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+    #personalize:not([hidden]) .success-label { animation: gentle-appearance 900ms 150ms ease both; }
+    #personalize:not([hidden]) .account-title { animation: gentle-appearance 900ms 250ms ease both; }
+    #personalize:not([hidden]) .personalize-description { animation: gentle-appearance 900ms 350ms ease both; }
     @keyframes gentle-appearance {
         from { opacity: 0; transform: translateY(12px); }
         to { opacity: 1; transform: translateY(0); }
