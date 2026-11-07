@@ -330,3 +330,40 @@ document.getElementById("energy-form").addEventListener("submit", function(event
     event.preventDefault()
     // Следующий вопрос анкеты добавим после проверки этого экрана.
 })
+
+function bounceSticker(sticker) {
+    if (typeof sticker.animate !== "function") {
+        return
+    }
+
+    for (const animation of sticker.getAnimations()) {
+        animation.cancel()
+    }
+
+    if (reducedMotion.matches) {
+        sticker.animate([{ opacity: 1 }, { opacity: 0.65 }, { opacity: 1 }], {
+            duration: 300
+        })
+        return
+    }
+
+    sticker.animate([
+        { transform: "translateY(0) rotate(0deg)", offset: 0, easing: "ease-out" },
+        { transform: "translateY(-12px) rotate(-3deg)", offset: 0.4, easing: "ease-in" },
+        { transform: "translateY(1.5px) rotate(1deg)", offset: 0.75, easing: "ease-out" },
+        { transform: "translateY(0) rotate(0deg)", offset: 1 }
+    ], { duration: 650 })
+}
+
+for (const sticker of document.querySelectorAll(".sticker-button")) {
+    sticker.addEventListener("click", function() {
+        bounceSticker(sticker)
+    })
+
+    sticker.addEventListener("keydown", function(event) {
+        if ((event.key === "Enter" || event.key === " ") && !event.repeat) {
+            event.preventDefault()
+            bounceSticker(sticker)
+        }
+    })
+}

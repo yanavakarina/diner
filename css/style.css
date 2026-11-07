@@ -441,3 +441,19 @@ legend {
     .energy-range:active::-webkit-slider-thumb { box-shadow: 0 3px 16px #14141340; }
     .energy-range:active::-moz-range-thumb { box-shadow: 0 3px 16px #14141340; }
 }
+
+.personalize-art { overflow: visible; }
+.sticker-button {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.sticker-button:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+    .sticker-button:hover { filter: brightness(1.07); }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .sticker-button { transition: filter 300ms ease; }
+}
