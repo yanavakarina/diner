@@ -81,6 +81,8 @@ function createEnergyControl() {
         colorStart.setAttribute("stop-color", presentation.startColor)
         colorEnd.setAttribute("stop-color", presentation.endColor)
         face.dataset.state = presentation.state
+        const faceShift = (Number(range.value) - 50) / 50 * 12
+        face.style.setProperty("--face-shift", faceShift + "px")
         range.setAttribute("aria-valuetext", presentation.label)
 
         for (const caption of captions) {
