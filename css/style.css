@@ -450,10 +450,30 @@ legend {
     transform-box: fill-box;
     transform-origin: center;
 }
+.sticker-button:focus { outline: none; }
 .sticker-button:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 @media (hover: hover) and (pointer: fine) {
     .sticker-button:hover { filter: brightness(1.07); }
 }
 @media (prefers-reduced-motion: no-preference) {
     .sticker-button { transition: filter 300ms ease; }
+}
+
+.personalize-smile { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: no-preference) {
+    #personalize:not([hidden]) .personalize-smile {
+        animation: main-smile-float 5.2s ease-in-out infinite alternate;
+    }
+    #personalize:not([hidden]) .personalize-pupils {
+        animation: main-smile-look 12s 1.8s ease-in-out infinite both;
+    }
+    @keyframes main-smile-float {
+        from { transform: translate(0, 0) rotate(-0.7deg); }
+        to { transform: translate(3px, -6px) rotate(0.7deg); }
+    }
+    @keyframes main-smile-look {
+        0%, 15%, 83.333%, 100% { transform: translateX(0); }
+        23.333%, 40% { transform: translateX(3px); }
+        56.667%, 73.333% { transform: translateX(-3px); }
+    }
 }
