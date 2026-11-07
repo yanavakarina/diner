@@ -190,6 +190,69 @@ legend {
 .notice { margin: 0 0 8px; font-size: 12px; color: var(--muted); text-align: center; }
 .notice:empty { display: none; }
 
+
+.account-title {
+    margin: 28px 0 12px;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    text-align: center;
+}
+.email-field { margin-top: 40px; }
+.email-field label {
+    display: block;
+    margin: 0 0 8px 4px;
+    font-size: 14px;
+    color: var(--muted);
+}
+.email-field input {
+    width: 100%;
+    min-height: 54px;
+    padding: 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 18px;
+    background: white;
+    color: var(--ink);
+    font-size: 16px;
+}
+.email-field input::placeholder { color: #99958d; }
+.email-field input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.account-hint {
+    margin: 16px 4px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+.auth-divider::before, .auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ded8ca;
+}
+.social-buttons { display: grid; gap: 14px; padding-bottom: 12px; }
+.button-social:disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fff;
+    border: 1.5px solid #ded8ca;
+    color: #78756f;
+}
+.provider-icon { flex-shrink: 0; width: 22px; }
+.google-icon { font-size: 22px; font-weight: 700; line-height: 1; }
+
 @media (min-width: 600px) {
     .app { margin-block: 24px; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 60px #29221b1a; }
     .app { min-height: 0; }

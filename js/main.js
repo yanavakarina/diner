@@ -4,6 +4,7 @@ const goals = document.getElementById("goals")
 const gender = document.getElementById("gender")
 const occupation = document.getElementById("occupation")
 const relationship = document.getElementById("relationship")
+const account = document.getElementById("account")
 const start = document.getElementById("start")
 const back = document.getElementById("back")
 const form = document.getElementById("goals-form")
@@ -14,9 +15,13 @@ const title = document.getElementById("goals-title")
 const genderTitle = document.getElementById("gender-title")
 const occupationTitle = document.getElementById("occupation-title")
 const relationshipTitle = document.getElementById("relationship-title")
+const accountTitle = document.getElementById("account-title")
 const genderForm = document.getElementById("gender-form")
 const occupationForm = document.getElementById("occupation-form")
 const relationshipForm = document.getElementById("relationship-form")
+const accountForm = document.getElementById("account-form")
+const email = document.getElementById("email")
+const accountContinue = document.getElementById("account-continue")
 
 function showScreen(screen, focusTarget) {
     for (const item of screens) {
@@ -102,5 +107,32 @@ document.getElementById("relationship-back").addEventListener("click", function(
 
 relationshipForm.addEventListener("submit", function(event) {
     event.preventDefault()
+
+    if (!relationshipForm.querySelector("input:checked")) {
+        return
+    }
+
+    showScreen(account, accountTitle)
+})
+
+document.getElementById("account-back").addEventListener("click", function() {
+    showScreen(relationship, relationshipTitle)
+})
+
+function updateEmailButton() {
+    accountContinue.disabled = !email.validity.valid
+}
+
+email.addEventListener("input", updateEmailButton)
+email.addEventListener("change", updateEmailButton)
+window.addEventListener("pageshow", updateEmailButton)
+
+accountForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    if (!email.reportValidity()) {
+        return
+    }
+
     // Переход подключим при добавлении следующего экрана регистрации.
 })
