@@ -40,13 +40,76 @@ const personalizeTitle = document.getElementById("personalize-title")
 let birthdayPicker
 
 
-function showScreen(screen, focusTarget) {
-    for (const item of screens) {
-        item.hidden = item !== screen
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+let currentScreen = welcome
+let screenTransition = false
+
+async function showScreen(screen, focusTarget) {
+    if (screenTransition || screen === currentScreen) {
+        return
     }
 
+    const previous = currentScreen
+    const previousProgress = previous.querySelector(".progress span")
+    const previousWidth = previousProgress ? previousProgress.getBoundingClientRect().width : 0
+    const direction = [...screens].indexOf(screen) > [...screens].indexOf(previous) ? 1 : -1
+
+    screen.hidden = false
     window.scrollTo(0, 0)
-    focusTarget.focus({ preventScroll: true })
+
+    if (reducedMotion.matches || typeof screen.animate !== "function") {
+        previous.hidden = true
+        currentScreen = screen
+        focusTarget.focus({ preventScroll: true })
+        return
+    }
+
+    screenTransition = true
+    previous.inert = true
+    screen.inert = true
+    const animations = []
+    const timing = { duration: 400, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+
+    try {
+        animations.push(previous.animate([
+            { opacity: 1, transform: "translateX(0)" },
+            { opacity: 0, transform: "translateX(" + -direction * 20 + "px)" }
+        ], timing))
+        animations.push(screen.animate([
+            { opacity: 0, transform: "translateX(" + direction * 32 + "px)" },
+            { opacity: 1, transform: "translateX(0)" }
+        ], timing))
+
+        const progress = screen.querySelector(".progress span")
+
+        if (progress) {
+            const width = progress.getBoundingClientRect().width
+
+            if (width > 0) {
+                animations.push(progress.animate([
+                    { transform: "scaleX(" + previousWidth / width + ")" },
+                    { transform: "scaleX(1)" }
+                ], timing))
+            }
+        }
+
+        await Promise.all(animations.map(function(animation) {
+            return animation.finished
+        }))
+    } catch {
+        // При отмене анимации всё равно завершаем переход на выбранный экран.
+    } finally {
+        for (const animation of animations) {
+            animation.cancel()
+        }
+
+        previous.hidden = true
+        previous.inert = false
+        screen.inert = false
+        currentScreen = screen
+        screenTransition = false
+        focusTarget.focus({ preventScroll: true })
+    }
 }
 
 start.addEventListener("click", function() {

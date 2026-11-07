@@ -21,14 +21,19 @@ button { -webkit-tap-highlight-color: transparent; }
 [hidden] { display: none !important; }
 
 .app {
+    display: grid;
+    overflow: hidden;
     width: 100%;
     max-width: 430px;
     margin-inline: auto;
     min-height: 100svh;
     background: var(--paper);
 }
-.screen { min-height: 100svh; }
+.screen { grid-area: 1 / 1; min-width: 0; min-height: 100svh; }
 .button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     width: 100%;
     min-height: var(--button-height);
     border: 1px solid #30302e;
@@ -186,7 +191,8 @@ legend {
 .check { display: grid; place-items: center; flex: 0 0 20px; height: 20px; border: 1.5px solid var(--line); border-radius: 7px; }
 .choice:has(input:checked) { border-color: var(--ink); background: #fffaf4; }
 .choice input:checked ~ .check { border-color: var(--ink); background: var(--ink); color: white; }
-.choice input:checked ~ .check::after { content: "✓"; font-size: 13px; }
+.check::after { content: "✓"; font-size: 13px; opacity: 0; transform: scale(0.6); }
+.choice input:checked ~ .check::after { opacity: 1; transform: scale(1); }
 .notice { margin: 0 0 8px; font-size: 12px; color: var(--muted); text-align: center; }
 .notice:empty { display: none; }
 
@@ -335,6 +341,54 @@ legend {
     .welcome { min-height: min(844px, calc(100dvh - 48px)); }
     .question-screen { height: min(844px, calc(100dvh - 48px)); }
 }
+.progress span { transform-origin: left center; }
+.button-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #8b8984;
+    opacity: 0;
+}
+.button-dark:disabled { background: linear-gradient(115deg, #585754, #121212 42%); }
+.button-dark:disabled::before { opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+    .back:hover { background: #eae5dc; }
+    .back:hover svg { transform: translateX(-3px); }
+    .button:enabled:hover { filter: brightness(1.12); box-shadow: 0 4px 12px #14141318; }
+    .choice:hover { border-color: #c7beaf; }
+    .choice:has(input:checked):hover { border-color: var(--ink); }
+}
+.button:enabled:active { transform: scale(0.975); }
+.back:active { transform: scale(0.92); }
+.choice:active { transform: scale(0.985); }
+
 @media (prefers-reduced-motion: no-preference) {
-    .choice, .button { transition: background-color 150ms, border-color 150ms; }
+    .button {
+        transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 240ms ease, filter 240ms ease, border-color 240ms ease;
+    }
+    .button-dark::before { transition: opacity 280ms ease; }
+    .back, .back svg { transition: transform 220ms ease, background-color 220ms ease; }
+    .choice {
+        transition: background-color 240ms ease, border-color 240ms ease,
+                    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .check { transition: background-color 220ms ease, border-color 220ms ease; }
+    .check::after { transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .email-field input { transition: border-color 240ms ease, box-shadow 240ms ease; }
+    .email-field input:focus { box-shadow: 0 0 0 3px #ded8ca80; }
+    .wheel-option { transition: color 160ms ease; }
+    #personalize:not([hidden]) .personalize-art { animation: gentle-appearance 650ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+    #personalize:not([hidden]) .success-label { animation: gentle-appearance 500ms 100ms ease both; }
+    #personalize:not([hidden]) .account-title { animation: gentle-appearance 500ms 150ms ease both; }
+    #personalize:not([hidden]) .personalize-description { animation: gentle-appearance 500ms 200ms ease both; }
+    @keyframes gentle-appearance {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .button:enabled:active, .back:active, .choice:active, .back:hover svg { transform: none; }
 }
