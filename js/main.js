@@ -30,6 +30,13 @@ const nameTitle = document.getElementById("name-title")
 const nameForm = document.getElementById("name-form")
 const firstName = document.getElementById("first-name")
 const nameContinue = document.getElementById("name-continue")
+const phone = document.getElementById("phone")
+const phoneTitle = document.getElementById("phone-title")
+const phoneForm = document.getElementById("phone-form")
+const phoneNumber = document.getElementById("phone-number")
+const phoneContinue = document.getElementById("phone-continue")
+const personalize = document.getElementById("personalize")
+const personalizeTitle = document.getElementById("personalize-title")
 let birthdayPicker
 
 
@@ -185,5 +192,50 @@ nameForm.addEventListener("submit", function(event) {
         return
     }
 
-    // Переход подключим при добавлении следующего экрана анкеты.
+    firstName.blur()
+    showScreen(phone, phoneTitle)
+})
+
+document.getElementById("phone-back").addEventListener("click", function() {
+    showScreen(nameScreen, nameTitle)
+})
+
+function normalizePhone(value) {
+    let digits = value.replace(/[^0-9]/g, "")
+
+    if (digits.length === 11 && (digits[0] === "7" || digits[0] === "8")) {
+        digits = digits.slice(1)
+    }
+
+    return digits
+}
+
+function updatePhoneButton() {
+    const digits = normalizePhone(phoneNumber.value)
+
+    if (phoneNumber.value !== digits) {
+        phoneNumber.value = digits
+    }
+
+    phoneContinue.disabled = !phoneNumber.validity.valid
+}
+
+phoneNumber.addEventListener("input", updatePhoneButton)
+phoneNumber.addEventListener("change", updatePhoneButton)
+window.addEventListener("pageshow", updatePhoneButton)
+
+phoneForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+    updatePhoneButton()
+
+    if (!phoneNumber.reportValidity()) {
+        return
+    }
+
+    phoneNumber.blur()
+    showScreen(personalize, personalizeTitle)
+})
+
+document.getElementById("personalize-back").addEventListener("click", function() {
+    showScreen(phone, phoneTitle)
 })

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f7f4ed">
-    <title>Ужин с новыми людьми</title>
+    <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <script defer src="js/date-picker.js"></script>
@@ -308,6 +308,58 @@
                     <button class="button button-dark" id="name-continue" type="submit" disabled>Продолжить</button>
                 </footer>
             </form>
+        </section>
+
+        <section class="screen question-screen" id="phone" aria-labelledby="phone-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="phone-back" type="button" aria-label="Вернуться к имени">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Номер телефона</p>
+            </header>
+            <form class="question-form" id="phone-form">
+                <div class="question-scroll">
+                    <h1 class="account-title" id="phone-title" tabindex="-1">Какой у вас номер телефона?</h1>
+                    <div class="email-field">
+                        <label for="phone-number">Номер телефона</label>
+                        <div class="phone-field">
+                            <span class="phone-prefix" id="phone-prefix">+7</span>
+                            <input id="phone-number" name="phone" type="tel" inputmode="tel"
+                                   autocomplete="tel-national" pattern="[0-9]{10}" placeholder="999 123-45-67"
+                                   aria-describedby="phone-prefix phone-hint" required>
+                        </div>
+                    </div>
+                    <p class="account-hint" id="phone-hint">Введите 10 цифр после +7</p>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" id="phone-continue" type="submit" disabled>Подтвердить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen" id="personalize" aria-labelledby="personalize-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="personalize-back" type="button" aria-label="Вернуться к номеру телефона">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Готово</p>
+            </header>
+            <div class="question-form">
+                <div class="question-scroll personalize-content">
+                    <img class="personalize-art" src="assets/personalize.svg" width="350" height="220" alt="">
+                    <p class="success-label">Регистрация завершена</p>
+                    <h1 class="account-title" id="personalize-title" tabindex="-1">Настроим diner<br>под вас</h1>
+                    <p class="personalize-description">Ответьте на несколько вопросов, чтобы мы лучше узнали вас и подобрали компанию для ужина.</p>
+                    <p class="account-hint">Демонстрационный профиль</p>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" id="personalize-start" type="button">Поехали</button>
+                </footer>
+            </div>
         </section>
     </main>
 </body>

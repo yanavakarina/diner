@@ -304,6 +304,31 @@ legend {
 .date-wheel:focus-visible { outline: 2px solid var(--orange); outline-offset: -2px; border-radius: 12px; }
 .date-summary { margin: 20px 0; text-align: center; font-size: 14px; color: var(--muted); }
 
+
+.phone-field { display: flex; align-items: stretch; gap: 10px; }
+.phone-prefix {
+    display: grid;
+    place-items: center;
+    flex: 0 0 64px;
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 18px;
+    font-size: 18px;
+}
+.phone-field input { min-width: 0; flex: 1; }
+.personalize-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: safe center;
+    text-align: center;
+    padding-block: 24px;
+}
+.personalize-art { width: 100%; max-width: 350px; height: auto; flex-shrink: 0; }
+.success-label { margin: 20px 0 0; color: #566b50; font-size: 13px; }
+.personalize-content .account-title { margin: 16px 0; }
+.personalize-description { margin: 0; max-width: 330px; font-size: 16px; line-height: 1.6; }
+
 @media (min-width: 600px) {
     .app { margin-block: 24px; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 60px #29221b1a; }
     .app { min-height: 0; }
