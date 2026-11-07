@@ -37,6 +37,9 @@ const phoneNumber = document.getElementById("phone-number")
 const phoneContinue = document.getElementById("phone-continue")
 const personalize = document.getElementById("personalize")
 const personalizeTitle = document.getElementById("personalize-title")
+const energy = document.getElementById("energy")
+const energyTitle = document.getElementById("energy-title")
+let energyControl
 let birthdayPicker
 
 
@@ -302,4 +305,28 @@ phoneForm.addEventListener("submit", function(event) {
 
 document.getElementById("personalize-back").addEventListener("click", function() {
     showScreen(phone, phoneTitle)
+})
+
+document.getElementById("personalize-start").addEventListener("click", function() {
+    showScreen(energy, energyTitle)
+
+    if (!energyControl) {
+        energyControl = createEnergyControl()
+    }
+
+    energyControl.start()
+})
+
+document.getElementById("energy-back").addEventListener("click", function() {
+    if (screenTransition) {
+        return
+    }
+
+    energyControl.stop()
+    showScreen(personalize, personalizeTitle)
+})
+
+document.getElementById("energy-form").addEventListener("submit", function(event) {
+    event.preventDefault()
+    // Следующий вопрос анкеты добавим после проверки этого экрана.
 })

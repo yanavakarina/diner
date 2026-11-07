@@ -6,9 +6,10 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=energy1">
     <script defer src="js/date-picker.js"></script>
-    <script defer src="js/main.js"></script>
+    <script defer src="js/energy.js?v=energy1"></script>
+    <script defer src="js/main.js?v=energy1"></script>
 </head>
 <body>
     <main class="app">
@@ -360,6 +361,72 @@
                     <button class="button button-dark" id="personalize-start" type="button">Поехали</button>
                 </footer>
             </div>
+        </section>
+
+        <section class="screen question-screen" id="energy" aria-labelledby="energy-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="energy-back" type="button" aria-label="Вернуться к предложению персонализации">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Общение</p>
+            </header>
+            <div class="progress" role="img" aria-label="Начало анкеты"><span></span></div>
+            <form class="question-form" id="energy-form">
+                <div class="question-scroll energy-content">
+                    <h1 class="account-title" id="energy-title" tabindex="-1">Как вы чувствуете<br>себя в общении?</h1>
+                    <div class="energy-face-float" aria-hidden="true">
+                        <svg class="energy-face" id="energy-face" data-state="ambivert" viewBox="0 0 180 180" fill="none">
+                            <defs>
+                                <linearGradient id="energy-gradient" x1="20" y1="155" x2="150" y2="25" gradientUnits="userSpaceOnUse">
+                                    <stop id="energy-color-start" stop-color="#FF85DE"/>
+                                    <stop id="energy-color-end" offset="1" stop-color="#DAD2FF"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="90" cy="90" r="70" fill="url(#energy-gradient)"/>
+                            <ellipse cx="78" cy="76" rx="14" ry="16" fill="white"/>
+                            <ellipse cx="102" cy="76" rx="14" ry="16" fill="white"/>
+                            <g id="energy-pupils">
+                                <circle cx="78" cy="76" r="8" fill="#141413"/>
+                                <circle cx="102" cy="76" r="8" fill="#141413"/>
+                            </g>
+                            <path class="energy-mouth mouth-introvert" d="M69 101 Q90 117 111 101 Q118 99 114 108 Q90 132 66 108 Q62 99 69 101Z" fill="#141413"/>
+                            <path class="energy-mouth mouth-ambivert" d="M70 98H110Q116 98 111 106Q90 130 69 106Q64 98 70 98Z" fill="#141413"/>
+                            <path class="energy-mouth mouth-extrovert" d="M78 98H102Q108 98 104 109Q90 136 76 109Q72 98 78 98Z" fill="#141413"/>
+                        </svg>
+                    </div>
+                    <div class="energy-captions">
+                        <div class="energy-caption" data-energy-state="introvert" aria-hidden="true">
+                            <h2>Интроверт</h2>
+                            <p>Мне комфортнее в небольшой компании<br>или в разговоре один на один.</p>
+                        </div>
+                        <div class="energy-caption is-current" data-energy-state="ambivert">
+                            <h2>Амбиверт</h2>
+                            <p>Мне нравится и то и другое.<br>Всё зависит от настроения.</p>
+                        </div>
+                        <div class="energy-caption" data-energy-state="extrovert" aria-hidden="true">
+                            <h2>Экстраверт</h2>
+                            <p>Люблю быть среди людей.<br>Общение заряжает меня энергией.</p>
+                        </div>
+                    </div>
+                    <div class="energy-range-wrap">
+                        <div class="energy-markers" aria-hidden="true">
+                            <span class="energy-marker marker-introvert"></span>
+                            <span class="energy-marker marker-ambivert"></span>
+                            <span class="energy-marker marker-extrovert"></span>
+                        </div>
+                        <input class="energy-range" id="energy-range" name="energy" type="range"
+                               min="0" max="100" step="1" value="50"
+                               aria-labelledby="energy-title" aria-describedby="energy-tip"
+                               aria-valuetext="Амбиверт">
+                    </div>
+                    <p class="energy-tip" id="energy-tip">Потяните ползунок или нажмите на шкалу</p>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" type="submit">Продолжить</button>
+                </footer>
+            </form>
         </section>
     </main>
 </body>
