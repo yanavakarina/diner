@@ -94,7 +94,7 @@ button:focus-visible, .choice:has(input:focus-visible) {
     letter-spacing: -0.04em;
     text-align: center;
 }
-.goals {
+.question-screen {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -102,14 +102,14 @@ button:focus-visible, .choice:has(input:focus-visible) {
     min-height: 0;
     padding: max(18px, env(safe-area-inset-top)) var(--space) max(16px, env(safe-area-inset-bottom));
 }
-.goals .screen-header, .goals .progress { flex-shrink: 0; }
-#goals-form {
+.question-screen .screen-header, .question-screen .progress { flex-shrink: 0; }
+.question-form {
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto;
     flex: 1;
     min-height: 0;
 }
-.goals-scroll {
+.question-scroll {
     min-height: 0;
     overflow-y: auto;
     overscroll-behavior-y: contain;
@@ -142,6 +142,8 @@ button:focus-visible, .choice:has(input:focus-visible) {
 }
 .progress { height: 4px; background: #ded8ca; border-radius: 8px; margin-top: 14px; overflow: hidden; }
 .progress span { display: block; width: 5%; height: 100%; background: linear-gradient(90deg, var(--orange), var(--pink)); }
+#gender .progress span { width: 13%; }
+#occupation .progress span { width: 17%; }
 fieldset { min-width: 0; margin: 0; padding: 0; border: none; }
 legend {
     float: left;
@@ -176,6 +178,10 @@ legend {
 }
 .emoji { flex: 0 0 23px; font-size: 21px; text-align: center; }
 .choice-text { flex: 1; font-size: 15px; line-height: 1.35; font-weight: 600; }
+.single-choices { clear: both; padding-top: 30px; }
+.choice-centered { justify-content: center; text-align: center; }
+.answer-content { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.choice-centered .choice-text { flex: initial; }
 .check { display: grid; place-items: center; flex: 0 0 20px; height: 20px; border: 1.5px solid var(--line); border-radius: 7px; }
 .choice:has(input:checked) { border-color: var(--ink); background: #fffaf4; }
 .choice input:checked ~ .check { border-color: var(--ink); background: var(--ink); color: white; }
@@ -187,7 +193,7 @@ legend {
     .app { margin-block: 24px; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 60px #29221b1a; }
     .app { min-height: 0; }
     .welcome { min-height: min(844px, calc(100dvh - 48px)); }
-    .goals { height: min(844px, calc(100dvh - 48px)); }
+    .question-screen { height: min(844px, calc(100dvh - 48px)); }
 }
 @media (prefers-reduced-motion: no-preference) {
     .choice, .button { transition: background-color 150ms, border-color 150ms; }

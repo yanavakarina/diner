@@ -21,7 +21,7 @@
             </div>
         </section>
 
-        <section class="screen goals" id="goals" aria-labelledby="goals-title" hidden>
+        <section class="screen question-screen" id="goals" aria-labelledby="goals-title" hidden>
             <header class="screen-header">
                 <button class="back" id="back" type="button" aria-label="Вернуться к приветствию">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -32,8 +32,8 @@
             </header>
             <div class="progress" role="img" aria-label="Начало регистрации"><span></span></div>
 
-            <form id="goals-form">
-                <div class="goals-scroll">
+            <form class="question-form" id="goals-form">
+                <div class="question-scroll">
                 <fieldset>
                     <legend id="goals-title" tabindex="-1">Что ты ищешь?</legend>
                     <p class="hint" id="selection-hint">Выбери до двух вариантов</p>
@@ -89,6 +89,86 @@
                 </footer>
             </form>
 
+        </section>
+
+        <section class="screen question-screen" id="gender" aria-labelledby="gender-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="gender-back" type="button" aria-label="Вернуться к выбору целей">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Пол</p>
+            </header>
+            <div class="progress" role="img" aria-label="Пол — следующий шаг регистрации"><span></span></div>
+            <form class="question-form single-choice-form" id="gender-form">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="gender-title" tabindex="-1">Укажите свой пол</legend>
+                        <div class="choices single-choices">
+                        <label class="choice choice-centered">
+                            <input type="radio" name="gender" value="Мужчина" required>
+                            <span class="answer-content"><span class="choice-text">Мужчина</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="gender" value="Женщина" required>
+                            <span class="answer-content"><span class="choice-text">Женщина</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="gender" value="Предпочитаю не указывать" required>
+                            <span class="answer-content"><span class="choice-text">Предпочитаю не указывать</span></span>
+                        </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen" id="occupation" aria-labelledby="occupation-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="occupation-back" type="button" aria-label="Вернуться к выбору пола">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Занятие</p>
+            </header>
+            <div class="progress" role="img" aria-label="Занятие — следующий шаг регистрации"><span></span></div>
+            <form class="question-form single-choice-form" id="occupation-form">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="occupation-title" tabindex="-1">Чем ты занимаешься?</legend>
+                        <div class="choices single-choices">
+                        <label class="choice choice-centered">
+                            <input type="radio" name="occupation" value="Учусь" required>
+                            <span class="answer-content"><span class="emoji" aria-hidden="true">🎓</span><span class="choice-text">Учусь</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="occupation" value="Работаю" required>
+                            <span class="answer-content"><span class="emoji" aria-hidden="true">💼</span><span class="choice-text">Работаю</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="occupation" value="Учусь и работаю" required>
+                            <span class="answer-content"><span class="emoji" aria-hidden="true">📚</span><span class="choice-text">Учусь и работаю</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="occupation" value="Занимаюсь своими проектами" required>
+                            <span class="answer-content"><span class="emoji" aria-hidden="true">💡</span><span class="choice-text">Занимаюсь своими проектами</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="occupation" value="Сейчас не учусь и не работаю" required>
+                            <span class="answer-content"><span class="emoji" aria-hidden="true">🌿</span><span class="choice-text">Сейчас не учусь и не работаю</span></span>
+                        </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
         </section>
     </main>
 </body>

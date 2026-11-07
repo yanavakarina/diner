@@ -1,5 +1,8 @@
+const screens = document.querySelectorAll(".screen")
 const welcome = document.getElementById("welcome")
 const goals = document.getElementById("goals")
+const gender = document.getElementById("gender")
+const occupation = document.getElementById("occupation")
 const start = document.getElementById("start")
 const back = document.getElementById("back")
 const form = document.getElementById("goals-form")
@@ -7,19 +10,26 @@ const choices = document.querySelectorAll('input[name="goal"]')
 const continueButton = document.getElementById("continue")
 const notice = document.getElementById("notice")
 const title = document.getElementById("goals-title")
+const genderTitle = document.getElementById("gender-title")
+const occupationTitle = document.getElementById("occupation-title")
+const genderForm = document.getElementById("gender-form")
+const occupationForm = document.getElementById("occupation-form")
+
+function showScreen(screen, focusTarget) {
+    for (const item of screens) {
+        item.hidden = item !== screen
+    }
+
+    window.scrollTo(0, 0)
+    focusTarget.focus({ preventScroll: true })
+}
 
 start.addEventListener("click", function() {
-    welcome.hidden = true
-    goals.hidden = false
-    window.scrollTo(0, 0)
-    title.focus({ preventScroll: true })
+    showScreen(goals, title)
 })
 
 back.addEventListener("click", function() {
-    goals.hidden = true
-    welcome.hidden = false
-    window.scrollTo(0, 0)
-    start.focus({ preventScroll: true })
+    showScreen(welcome, start)
 })
 
 form.addEventListener("change", function(event) {
@@ -39,5 +49,41 @@ form.addEventListener("change", function(event) {
 
 form.addEventListener("submit", function(event) {
     event.preventDefault()
-    // Переход подключим, когда добавим следующий экран регистрации.
+
+    if (!form.querySelector("input:checked")) {
+        return
+    }
+
+    showScreen(gender, genderTitle)
+})
+
+for (const singleForm of document.querySelectorAll(".single-choice-form")) {
+    const button = singleForm.querySelector('button[type="submit"]')
+
+    singleForm.addEventListener("change", function() {
+        button.disabled = !singleForm.querySelector("input:checked")
+    })
+}
+
+genderForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    if (!genderForm.querySelector("input:checked")) {
+        return
+    }
+
+    showScreen(occupation, occupationTitle)
+})
+
+document.getElementById("gender-back").addEventListener("click", function() {
+    showScreen(goals, title)
+})
+
+document.getElementById("occupation-back").addEventListener("click", function() {
+    showScreen(gender, genderTitle)
+})
+
+occupationForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+    // Переход подключим при добавлении следующего экрана регистрации.
 })
