@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f4ed">
+    <title>Ужин с новыми людьми</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/main.js"></script>
+</head>
+<body>
+    <main class="app">
+        <section class="screen welcome" id="welcome" aria-labelledby="welcome-title">
+            <div class="welcome-photo" aria-hidden="true">
+                <img src="assets/dinner-reference.png" alt="">
+            </div>
+            <div class="welcome-content">
+                <h1 id="welcome-title">Новые друзья.<br>За одним столом.</h1>
+                <button class="button button-dark" id="start" type="button">Начать</button>
+            </div>
+        </section>
+
+        <section class="screen goals" id="goals" aria-labelledby="goals-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="back" type="button" aria-label="Вернуться к приветствию">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Твои цели</p>
+            </header>
+            <div class="progress" role="img" aria-label="Начало регистрации"><span></span></div>
+
+            <form id="goals-form">
+                <div class="goals-scroll">
+                <fieldset>
+                    <legend id="goals-title" tabindex="-1">Что ты ищешь?</legend>
+                    <p class="hint" id="selection-hint">Выбери до двух вариантов</p>
+                    <div class="choices">
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Найти новых друзей">
+                            <span class="emoji" aria-hidden="true">🙌</span>
+                            <span class="choice-text">Найти новых друзей</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Чаще выходить из дома">
+                            <span class="emoji" aria-hidden="true">💫</span>
+                            <span class="choice-text">Чаще выходить из дома</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Вести интересные разговоры">
+                            <span class="emoji" aria-hidden="true">💬</span>
+                            <span class="choice-text">Вести интересные разговоры</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Расширить круг общения">
+                            <span class="emoji" aria-hidden="true">✨</span>
+                            <span class="choice-text">Расширить круг общения</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Освоиться в новом городе">
+                            <span class="emoji" aria-hidden="true">🌃</span>
+                            <span class="choice-text">Освоиться в новом городе</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Познакомиться с местными в поездке">
+                            <span class="emoji" aria-hidden="true">🌍</span>
+                            <span class="choice-text">Познакомиться с местными в поездке</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice">
+                            <input type="checkbox" name="goal" value="Чувствовать себя увереннее в общении">
+                            <span class="emoji" aria-hidden="true">🫂</span>
+                            <span class="choice-text">Чувствовать себя увереннее в общении</span>
+                            <span class="check" aria-hidden="true"></span>
+                        </label>
+                    </div>
+                </fieldset>
+                </div>
+                <footer class="screen-footer">
+                <p class="notice" id="notice" role="status" aria-live="polite"></p>
+                <button class="button button-dark" id="continue" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>
