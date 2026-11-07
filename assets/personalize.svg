@@ -12,12 +12,12 @@
   <style>
     @media (prefers-reduced-motion: no-preference) {
       .floating { animation: float-gently 6s ease-in-out infinite alternate; }
-      .floating-lightning { --float-x: 2px; --float-y: -4px; animation-delay: -2s; }
-      .floating-leaf { --float-x: -3px; --float-y: 4px; animation-duration: 7.5s; animation-delay: -5s; }
-      .floating-star { --float-x: 2px; --float-y: 3px; animation-duration: 6.5s; animation-delay: -1s; }
-      .floating-rainbow { --float-x: -2px; --float-y: -4px; animation-duration: 8s; animation-delay: -6s; }
-      .floating-glasses { --float-x: 3px; --float-y: -3px; animation-duration: 7s; animation-delay: -3s; }
-      .floating-flame { --float-x: -2px; --float-y: 4px; animation-duration: 8.5s; animation-delay: -7s; }
+      .floating-lightning { --float-x: 3px; --float-y: -6px; animation-delay: -2s; }
+      .floating-leaf { --float-x: -4.5px; --float-y: 6px; animation-duration: 7.5s; animation-delay: -5s; }
+      .floating-star { --float-x: 3px; --float-y: 4.5px; animation-duration: 6.5s; animation-delay: -1s; }
+      .floating-rainbow { --float-x: -3px; --float-y: -6px; animation-duration: 8s; animation-delay: -6s; }
+      .floating-glasses { --float-x: 4.5px; --float-y: -4.5px; animation-duration: 7s; animation-delay: -3s; }
+      .floating-flame { --float-x: -3px; --float-y: 6px; animation-duration: 8.5s; animation-delay: -7s; }
       @keyframes float-gently {
         from { transform: translate(0, 0); }
         to { transform: translate(var(--float-x), var(--float-y)); }
