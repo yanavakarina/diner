@@ -6,10 +6,11 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=tags1">
+    <link rel="stylesheet" href="css/style.css?v=loading1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
-    <script defer src="js/main.js?v=tags1"></script>
+    <script defer src="js/profile-loading.js?v=loading1"></script>
+    <script defer src="js/main.js?v=loading1"></script>
 </head>
 <body>
     <main class="app">
@@ -713,7 +714,7 @@
                 <p>Характер</p>
             </header>
             <div class="progress" role="img" aria-label="Характер — следующий шаг анкеты"><span></span></div>
-            <form class="question-form multi-choice-form" id="self-qualities-form" data-max-choices="3">
+            <form class="question-form multi-choice-form" id="self-qualities-form" data-max-choices="3" data-next-screen="profile-loading">
                 <div class="question-scroll">
                     <fieldset>
                         <legend id="self-qualities-title" tabindex="-1">А за какие качества вас любят друзья?</legend>
@@ -777,6 +778,87 @@
                     <button class="button button-dark" type="submit" disabled>Продолжить</button>
                 </footer>
             </form>
+        </section>
+
+        <section class="screen question-screen" id="profile-loading" aria-labelledby="loading-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="loading-back" type="button" aria-label="Вернуться к качествам">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+            <div class="question-form">
+                <div class="question-scroll profile-loading-content">
+                    <div class="loading-orbit" role="progressbar" aria-label="Подготовка профиля" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div class="orbit-dots" aria-hidden="true">
+                            <span class="orbit-dot"></span><span class="orbit-dot"></span><span class="orbit-dot"></span>
+                            <span class="orbit-dot"></span><span class="orbit-dot"></span><span class="orbit-dot"></span>
+                        </div>
+                        <span id="loading-percent" aria-hidden="true">0%</span>
+                    </div>
+                    <h1 class="account-title" id="loading-title" tabindex="-1">Готовим ваше<br>знакомство</h1>
+                    <ul class="loading-steps">
+                        <li class="loading-step" data-step-label="Изучаем ваши цели">
+                            <svg class="step-ring" viewBox="0 0 28 28" aria-hidden="true">
+                                <circle class="step-track" cx="14" cy="14" r="11"/>
+                                <circle class="step-progress" cx="14" cy="14" r="11" pathLength="100"/>
+                                <path class="step-check" d="m8 14 4 4 8-9"/>
+                            </svg>
+                            <span>Изучаем ваши цели</span>
+                        </li>
+                        <li class="loading-step" data-step-label="Учитываем стиль общения">
+                            <svg class="step-ring" viewBox="0 0 28 28" aria-hidden="true">
+                                <circle class="step-track" cx="14" cy="14" r="11"/>
+                                <circle class="step-progress" cx="14" cy="14" r="11" pathLength="100"/>
+                                <path class="step-check" d="m8 14 4 4 8-9"/>
+                            </svg>
+                            <span>Учитываем стиль общения</span>
+                        </li>
+                        <li class="loading-step" data-step-label="Собираем интересы">
+                            <svg class="step-ring" viewBox="0 0 28 28" aria-hidden="true">
+                                <circle class="step-track" cx="14" cy="14" r="11"/>
+                                <circle class="step-progress" cx="14" cy="14" r="11" pathLength="100"/>
+                                <path class="step-check" d="m8 14 4 4 8-9"/>
+                            </svg>
+                            <span>Собираем интересы</span>
+                        </li>
+                    </ul>
+                    <p class="loading-status" id="loading-status" role="status" aria-live="polite">Изучаем ваши цели</p>
+                    <p class="account-hint">Демонстрационная обработка анкеты</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="screen question-screen" id="profile-ready" aria-labelledby="ready-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="self-qualities" aria-label="Вернуться к качествам">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+            <div class="question-form">
+                <div class="question-scroll profile-ready-content">
+                    <svg class="profile-badge" width="96" height="96" viewBox="0 0 120 120" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="badge-gradient" x1="60" y1="12" x2="60" y2="108" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FF8626"/><stop offset="1" stop-color="#FFC1F0"/>
+                            </linearGradient>
+                        </defs>
+                        <polygon points="60.00,12.00 70.87,19.43 84.00,18.43 89.70,30.30 101.57,36.00 100.57,49.13 108.00,60.00 100.57,70.87 101.57,84.00 89.70,89.70 84.00,101.57 70.87,100.57 60.00,108.00 49.13,100.57 36.00,101.57 30.30,89.70 18.43,84.00 19.43,70.87 12.00,60.00 19.43,49.13 18.43,36.00 30.30,30.30 36.00,18.43 49.13,19.43" fill="url(#badge-gradient)" stroke="white" stroke-width="5" stroke-linejoin="round"/>
+                        <path class="badge-check" d="m40 60 14 15 28-34" fill="none" stroke="#161616" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
+                    </svg>
+                    <h1 class="account-title" id="ready-title" tabindex="-1">Теперь мы знаем вас чуть лучше</h1>
+                    <div class="profile-summary">
+                        <p>Ваши ответы помогут подобрать компанию для ужина.</p>
+                        <p id="ready-interest">У вас уже есть тема для знакомства.</p>
+                    </div>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" type="button" id="ready-continue">Продолжить</button>
+                </footer>
+            </div>
         </section>
     </main>
 </body>

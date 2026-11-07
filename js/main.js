@@ -39,6 +39,10 @@ const personalize = document.getElementById("personalize")
 const personalizeTitle = document.getElementById("personalize-title")
 const energy = document.getElementById("energy")
 const energyTitle = document.getElementById("energy-title")
+const profileLoadingScreen = document.getElementById("profile-loading")
+const profileReadyScreen = document.getElementById("profile-ready")
+const readyTitle = document.getElementById("ready-title")
+let profileLoading
 let energyControl
 let birthdayPicker
 
@@ -395,7 +399,7 @@ for (const multiForm of document.querySelectorAll(".multi-choice-form")) {
         button.disabled = selected.length === 0
     })
 
-    multiForm.addEventListener("submit", function(event) {
+    multiForm.addEventListener("submit", async function(event) {
         event.preventDefault()
         const selected = [...inputs].filter(function(input) {
             return input.checked
@@ -405,11 +409,23 @@ for (const multiForm of document.querySelectorAll(".multi-choice-form")) {
             return
         }
 
+        if (screenTransition) {
+            return
+        }
+
         if (multiForm.dataset.nextScreen) {
             const next = document.getElementById(multiForm.dataset.nextScreen)
-            showScreen(next, next.querySelector("legend"))
+
+            if (next === profileLoadingScreen && !profileLoading) {
+                profileLoading = createProfileLoading(finishProfileLoading)
+            }
+
+            await showScreen(next, next.querySelector('[tabindex="-1"]'))
+
+            if (next === profileLoadingScreen && !next.hidden) {
+                profileLoading.start()
+            }
         }
-        // Последний переход подключим при добавлении следующего вопроса.
     })
 }
 
@@ -427,3 +443,31 @@ for (const backButton of document.querySelectorAll("[data-back-screen]")) {
         }
     })
 }
+
+function finishProfileLoading() {
+    const name = firstName.value.trim()
+    readyTitle.textContent = name ? name + ", теперь мы знаем вас чуть лучше" : "Теперь мы знаем вас чуть лучше"
+    const hobby = document.querySelector('input[name="hobbies"]:checked')
+    const interest = document.getElementById("ready-interest")
+
+    if (hobby) {
+        const emoji = hobby.closest("label").querySelector(".emoji").textContent
+        interest.textContent = "У вас уже есть тема для будущего ужина — " + hobby.value.toLocaleLowerCase("ru-RU") + " " + emoji
+    } else {
+        interest.textContent = "У вас уже есть темы для знакомства."
+    }
+
+    showScreen(profileReadyScreen, readyTitle)
+}
+
+document.getElementById("loading-back").addEventListener("click", function() {
+    if (screenTransition) {
+        return
+    }
+
+    if (profileLoading) {
+        profileLoading.stop()
+    }
+
+    showScreen(document.getElementById("self-qualities"), document.getElementById("self-qualities-title"))
+})
