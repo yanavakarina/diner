@@ -144,6 +144,7 @@ button:focus-visible, .choice:has(input:focus-visible) {
 .progress span { display: block; width: 5%; height: 100%; background: linear-gradient(90deg, var(--orange), var(--pink)); }
 #gender .progress span { width: 13%; }
 #occupation .progress span { width: 17%; }
+#relationship .progress span { width: 25%; }
 fieldset { min-width: 0; margin: 0; padding: 0; border: none; }
 legend {
     float: left;

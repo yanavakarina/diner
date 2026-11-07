@@ -170,6 +170,50 @@
                 </footer>
             </form>
         </section>
+
+        <section class="screen question-screen" id="relationship" aria-labelledby="relationship-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="relationship-back" type="button" aria-label="Вернуться к выбору занятия">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Отношения</p>
+            </header>
+            <div class="progress" role="img" aria-label="Отношения — следующий шаг регистрации"><span></span></div>
+            <form class="question-form single-choice-form" id="relationship-form">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="relationship-title" tabindex="-1">Какой у вас статус отношений?</legend>
+                        <div class="choices single-choices">
+                        <label class="choice choice-centered">
+                            <input type="radio" name="relationship" value="Сейчас не в отношениях" required>
+                            <span class="answer-content"><span class="choice-text">Сейчас не в отношениях</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="relationship" value="В браке" required>
+                            <span class="answer-content"><span class="choice-text">В браке</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="relationship" value="Всё сложно" required>
+                            <span class="answer-content"><span class="choice-text">Всё сложно</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="relationship" value="В отношениях" required>
+                            <span class="answer-content"><span class="choice-text">В отношениях</span></span>
+                        </label>
+                        <label class="choice choice-centered">
+                            <input type="radio" name="relationship" value="Предпочитаю не указывать" required>
+                            <span class="answer-content"><span class="choice-text">Предпочитаю не указывать</span></span>
+                        </label>
+                    </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
+        </section>
     </main>
 </body>
 </html>

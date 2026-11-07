@@ -3,6 +3,7 @@ const welcome = document.getElementById("welcome")
 const goals = document.getElementById("goals")
 const gender = document.getElementById("gender")
 const occupation = document.getElementById("occupation")
+const relationship = document.getElementById("relationship")
 const start = document.getElementById("start")
 const back = document.getElementById("back")
 const form = document.getElementById("goals-form")
@@ -12,8 +13,10 @@ const notice = document.getElementById("notice")
 const title = document.getElementById("goals-title")
 const genderTitle = document.getElementById("gender-title")
 const occupationTitle = document.getElementById("occupation-title")
+const relationshipTitle = document.getElementById("relationship-title")
 const genderForm = document.getElementById("gender-form")
 const occupationForm = document.getElementById("occupation-form")
+const relationshipForm = document.getElementById("relationship-form")
 
 function showScreen(screen, focusTarget) {
     for (const item of screens) {
@@ -84,6 +87,20 @@ document.getElementById("occupation-back").addEventListener("click", function() 
 })
 
 occupationForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    if (!occupationForm.querySelector("input:checked")) {
+        return
+    }
+
+    showScreen(relationship, relationshipTitle)
+})
+
+document.getElementById("relationship-back").addEventListener("click", function() {
+    showScreen(occupation, occupationTitle)
+})
+
+relationshipForm.addEventListener("submit", function(event) {
     event.preventDefault()
     // Переход подключим при добавлении следующего экрана регистрации.
 })
