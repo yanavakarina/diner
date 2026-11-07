@@ -7,6 +7,7 @@
     <title>Ужин с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/date-picker.js"></script>
     <script defer src="js/main.js"></script>
 </head>
 <body>
@@ -250,6 +251,61 @@
                 </div>
                 <footer class="screen-footer">
                     <button class="button button-dark" id="account-continue" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen" id="birthday" aria-labelledby="birthday-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="birthday-back" type="button" aria-label="Вернуться к почте">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Дата рождения</p>
+            </header>
+            <form class="question-form" id="birthday-form">
+                <div class="question-scroll">
+                    <h1 class="account-title" id="birthday-title" tabindex="-1">Когда вы родились?</h1>
+                    <p class="hint">Это поможет подобрать компанию вашего возраста</p>
+                    <div class="wheel-labels" aria-hidden="true">
+                        <span>День</span><span>Месяц</span><span>Год</span>
+                    </div>
+                    <div class="date-picker" role="group" aria-label="Дата рождения">
+                        <div class="wheel-selection" aria-hidden="true"></div>
+                        <div class="date-wheel" id="birth-day" role="listbox" aria-label="День рождения" tabindex="0"></div>
+                        <div class="date-wheel" id="birth-month" role="listbox" aria-label="Месяц рождения" tabindex="0"></div>
+                        <div class="date-wheel" id="birth-year" role="listbox" aria-label="Год рождения" tabindex="0"></div>
+                    </div>
+                    <p class="date-summary" id="date-summary" aria-live="polite"></p>
+                    <p class="notice" id="date-error" role="status"></p>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" id="birthday-continue" type="submit">Подтвердить</button>
+                </footer>
+            </form>
+        </section>
+
+        <section class="screen question-screen" id="name" aria-labelledby="name-title" hidden>
+            <header class="screen-header">
+                <button class="back" id="name-back" type="button" aria-label="Вернуться к дате рождения">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Имя</p>
+            </header>
+            <form class="question-form" id="name-form">
+                <div class="question-scroll">
+                    <h1 class="account-title" id="name-title" tabindex="-1">Как вас зовут?</h1>
+                    <div class="email-field">
+                        <label for="first-name">Ваше имя</label>
+                        <input id="first-name" name="firstName" type="text" placeholder="Имя"
+                               autocomplete="given-name" maxlength="60" required>
+                    </div>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" id="name-continue" type="submit" disabled>Продолжить</button>
                 </footer>
             </form>
         </section>

@@ -22,6 +22,16 @@ const relationshipForm = document.getElementById("relationship-form")
 const accountForm = document.getElementById("account-form")
 const email = document.getElementById("email")
 const accountContinue = document.getElementById("account-continue")
+const birthday = document.getElementById("birthday")
+const birthdayTitle = document.getElementById("birthday-title")
+const birthdayForm = document.getElementById("birthday-form")
+const nameScreen = document.getElementById("name")
+const nameTitle = document.getElementById("name-title")
+const nameForm = document.getElementById("name-form")
+const firstName = document.getElementById("first-name")
+const nameContinue = document.getElementById("name-continue")
+let birthdayPicker
+
 
 function showScreen(screen, focusTarget) {
     for (const item of screens) {
@@ -134,5 +144,46 @@ accountForm.addEventListener("submit", function(event) {
         return
     }
 
-    // Переход подключим при добавлении следующего экрана регистрации.
+    showScreen(birthday, birthdayTitle)
+
+    if (!birthdayPicker) {
+        birthdayPicker = createBirthdayPicker()
+    }
+})
+
+document.getElementById("birthday-back").addEventListener("click", function() {
+    showScreen(account, accountTitle)
+})
+
+birthdayForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    if (!birthdayPicker || !birthdayPicker.isValid()) {
+        return
+    }
+
+    showScreen(nameScreen, nameTitle)
+})
+
+document.getElementById("name-back").addEventListener("click", function() {
+    showScreen(birthday, birthdayTitle)
+})
+
+function updateNameButton() {
+    nameContinue.disabled = firstName.value.trim() === ""
+}
+
+firstName.addEventListener("input", updateNameButton)
+firstName.addEventListener("change", updateNameButton)
+window.addEventListener("pageshow", updateNameButton)
+
+nameForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    if (firstName.value.trim() === "") {
+        firstName.focus()
+        return
+    }
+
+    // Переход подключим при добавлении следующего экрана анкеты.
 })
