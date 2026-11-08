@@ -12,7 +12,7 @@ function createProfileLoading(onComplete) {
             ring: element.querySelector(".step-progress")
         }
     })
-    const duration = 6800
+    const duration = 4000
     const completionPause = 600
     let frame = null
     let running = false
