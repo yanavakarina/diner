@@ -524,6 +524,32 @@ document.getElementById("book-dinner").addEventListener("click", function() {
         return
     }
 
+    subscription.querySelector(".subscription-close").dataset.backScreen = "booking"
+    updateSubscriptionSummary()
+    showScreen(subscription, subscriptionTitle)
+})
+
+
+const home = document.getElementById("home")
+const homeTitle = document.getElementById("home-title")
+
+function openHome() {
+    if (screenTransition) return
+    renderHomeEvents()
+    showScreen(home, homeTitle)
+}
+
+document.getElementById("skip-booking").addEventListener("click", openHome)
+document.getElementById("subscription-skip").addEventListener("click", openHome)
+document.getElementById("open-inbox").addEventListener("click", function() {
+    showScreen(document.getElementById("notification-inbox"), document.getElementById("inbox-title"))
+})
+
+const eventDialogControl = createEventDialog(function(event) {
+    if (screenTransition) return
+    subscription.dataset.eventDate = event.iso
+    subscription.dataset.eventType = event.type
+    subscription.querySelector(".subscription-close").dataset.backScreen = "home"
     updateSubscriptionSummary()
     showScreen(subscription, subscriptionTitle)
 })
