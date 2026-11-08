@@ -865,10 +865,8 @@ legend {
 .person-avatar { display: grid; place-items: center; flex: 0 0 43px; width: 43px; height: 43px; border-radius: 50%; font-size: 18px; font-family: "Lora", Georgia, serif; }
 .person-row strong { font-size: 14px; }
 .person-row p { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
-.meeting-demo-controls { border: 1px dashed #d4c5b8; border-radius: 22px; padding: 18px; text-align: center; margin: 22px 0 8px; }
-.meeting-demo-controls > p:first-child { font-size: 13px; margin: 0 0 13px; color: var(--muted); }
+.meeting-demo-controls { text-align: center; margin: 22px 0 8px; }
 .demo-step { border: 1px solid #cdb8a8; background: transparent; border-radius: 16px; padding: 13px; color: var(--ink); width: 100%; font-size: 14px; line-height: 1.4; cursor: pointer; }
-.meeting-demo-controls .demo-note { margin: 12px 0 0; font-size: 11px; }
 .meeting-empty { padding: 50px 10px; text-align: center; font-size: 16px; color: var(--muted); line-height: 1.7; }
 .meeting-empty h2 { font-size: 25px; letter-spacing: -.5px; line-height: 1.2; color: var(--ink); }
 .meeting-empty .button { margin-top: 20px; }

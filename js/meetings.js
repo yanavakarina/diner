@@ -53,10 +53,10 @@ function getMeetingPhase(meeting, now = Date.now()) {
 function formatMeetingCountdown(milliseconds) {
     const total = Math.max(0, Math.ceil(milliseconds / 1000))
     const days = Math.floor(total / 86400)
-    const hours = String(Math.floor(total % 86400 / 3600)).padStart(2, "0")
-    const minutes = String(Math.floor(total % 3600 / 60)).padStart(2, "0")
-    const seconds = String(total % 60).padStart(2, "0")
-    return (days ? days + "д " : "") + hours + ":" + minutes + ":" + seconds
+    const hours = Math.floor(total % 86400 / 3600)
+    const minutes = Math.floor(total % 3600 / 60)
+    const seconds = total % 60
+    return (days ? days + "д " : "") + hours + "ч " + minutes + "мин " + seconds + "с"
 }
 function meetingNode(tag, className, text) {
     const node = document.createElement(tag)
