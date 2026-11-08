@@ -399,7 +399,7 @@ for (const multiForm of document.querySelectorAll(".multi-choice-form")) {
         button.disabled = selected.length === 0
     })
 
-    multiForm.addEventListener("submit", async function(event) {
+    multiForm.addEventListener("submit", function(event) {
         event.preventDefault()
         const selected = [...inputs].filter(function(input) {
             return input.checked
@@ -420,7 +420,7 @@ for (const multiForm of document.querySelectorAll(".multi-choice-form")) {
                 profileLoading = createProfileLoading(finishProfileLoading)
             }
 
-            await showScreen(next, next.querySelector('[tabindex="-1"]'))
+            showScreen(next, next.querySelector('[tabindex="-1"]'))
 
             if (next === profileLoadingScreen && !next.hidden) {
                 profileLoading.start()

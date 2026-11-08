@@ -20,8 +20,8 @@ function createProfileLoading(onComplete) {
     let previousTime = null
     let previousPercent = -1
 
-    function render(progress) {
-        dots.style.transform = motion.matches ? "none" : "rotate(" + progress * 1080 + "deg)"
+    function render(progress, rotation = progress) {
+        dots.style.transform = motion.matches ? "none" : "rotate(" + rotation * 1080 + "deg)"
         const percent = Math.floor(progress * 100)
 
         if (percent === previousPercent) {
@@ -61,8 +61,12 @@ function createProfileLoading(onComplete) {
         }
         previousTime = time
         const fraction = Math.min(1, elapsed / duration)
-        const eased = fraction * fraction * (3 - 2 * fraction)
-        render(eased)
+        // Первые 75% вращение равномерное, затем шарики плавно тормозят.
+        const brakingDuration = 0.25
+        const brakingTime = Math.max(0, fraction - (1 - brakingDuration))
+        const rotationDistance = fraction - brakingTime * brakingTime / (2 * brakingDuration)
+        const fullRotationDistance = 1 - brakingDuration / 2
+        render(fraction, rotationDistance / fullRotationDistance)
 
         if (elapsed >= duration + completionPause) {
             running = false
@@ -87,6 +91,7 @@ function createProfileLoading(onComplete) {
         stop()
         running = true
         elapsed = 0
+        previousTime = performance.now()
         previousPercent = -1
         render(0)
 
