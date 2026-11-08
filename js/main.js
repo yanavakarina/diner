@@ -496,3 +496,34 @@ for (const choice of document.querySelectorAll(".notification-choice")) {
         showScreen(booking, bookingTitle)
     })
 }
+
+const subscription = document.getElementById("subscription")
+const subscriptionTitle = document.getElementById("subscription-title")
+
+function updateSubscriptionSummary() {
+    const plan = document.querySelector('input[name="subscription-plan"]:checked')
+    const summary = document.getElementById("subscription-summary")
+    summary.textContent = plan ?
+        Number(plan.dataset.price).toLocaleString("ru-RU") + " ₽ " + plan.dataset.period + " · демотариф" :
+        "Выберите демонстрационный тариф"
+}
+
+document.getElementById("subscription-plans").addEventListener("change", updateSubscriptionSummary)
+
+document.getElementById("book-dinner").addEventListener("click", function() {
+    if (screenTransition || this.disabled) {
+        return
+    }
+
+    const validDate = getDinnerDates().some(function(date) {
+        return date.iso === booking.dataset.selectedDate
+    })
+
+    if (!validDate) {
+        renderDinnerSuggestions()
+        return
+    }
+
+    updateSubscriptionSummary()
+    showScreen(subscription, subscriptionTitle)
+})

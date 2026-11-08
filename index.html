@@ -6,12 +6,12 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=booking2">
+    <link rel="stylesheet" href="css/style.css?v=subscription1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
-    <script defer src="js/main.js?v=booking1"></script>
+    <script defer src="js/main.js?v=subscription1"></script>
 </head>
 <body>
     <main class="app">
@@ -930,6 +930,77 @@
             <footer class="screen-footer">
                 <button class="button button-dark" id="book-dinner" type="button" disabled>Забронировать</button>
             </footer>
+            </div>
+        </section>
+
+        <section class="screen question-screen subscription" id="subscription" aria-labelledby="subscription-title" hidden>
+            <button class="back subscription-close" type="button" data-back-screen="booking" aria-label="Закрыть подписку и вернуться к ужинам">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+            <div class="question-form">
+                <div class="question-scroll subscription-content">
+                    <div class="subscription-hero" role="img" aria-label="Друзья общаются за ужином"></div>
+                    <div class="subscription-body">
+                        <h1 id="subscription-title" tabindex="-1">Больше встреч.<br>Больше знакомств.</h1>
+                        <p class="subscription-intro">Каждую неделю — новые люди за одним столом.</p>
+                        <p class="demo-note">Демонстрационные тарифы</p>
+                        <fieldset class="subscription-plans" id="subscription-plans">
+                            <legend class="visually-hidden">Выберите тариф подписки</legend>
+                            <label class="choice plan-option">
+                                <input type="radio" name="subscription-plan" value="monthly" data-price="990" data-period="за месяц">
+                                <span class="plan-radio" aria-hidden="true"></span>
+                                <span class="plan-main"><strong>1 месяц</strong><span class="plan-price"><b>990 ₽</b></span></span>
+                                <span class="plan-aside"><span>≈ 990 ₽/мес.</span></span>
+                            </label>
+                            <label class="choice plan-option">
+                                <input type="radio" name="subscription-plan" value="quarterly" data-price="2490" data-period="за 3 месяца" checked>
+                                <span class="plan-radio" aria-hidden="true"></span>
+                                <span class="plan-main"><strong>3 месяца</strong><span class="plan-price"><s>2 970 ₽</s> <b>2 490 ₽</b></span></span>
+                                <span class="plan-aside"><span class="plan-saving">Выгода ≈16%</span><span>≈ 830 ₽/мес.</span></span>
+                            </label>
+                            <label class="choice plan-option">
+                                <input type="radio" name="subscription-plan" value="annual" data-price="5990" data-period="за год">
+                                <span class="plan-radio" aria-hidden="true"></span>
+                                <span class="plan-main"><strong>12 месяцев</strong><span class="plan-price"><s>11 880 ₽</s> <b>5 990 ₽</b></span></span>
+                                <span class="plan-aside"><span class="plan-saving">Выгода ≈50%</span><span>≈ 499 ₽/мес.</span></span>
+                            </label>
+                        </fieldset>
+                        <div class="subscription-promo">
+                            <strong>Есть промокод?</strong>
+                            <button class="text-button" type="button" disabled>🎟 Ввести промокод</button>
+                        </div>
+                        <p class="subscription-explanation">Подписка покрывает бронирование места. Еда и напитки оплачиваются отдельно в ресторане.</p>
+                        <p class="demo-note">Это учебный макет. Можно выбрать тариф и продолжить знакомство с diner.</p>
+                        <section class="subscription-benefits" aria-labelledby="benefits-title">
+                            <h2 id="benefits-title">Что вас ждёт в diner</h2>
+                            <ul>
+                            <li><span class="benefit-icon" aria-hidden="true">🔑</span><div><strong>Встречи каждую неделю</strong><p>Выбирайте удобную дату и знакомьтесь с новыми людьми за ужином.</p></div></li>
+                            <li><span class="benefit-icon" aria-hidden="true">✨</span><div><strong>Каждый раз что-то новое</strong><p>Новая компания, новое место и новые темы для разговора.</p></div></li>
+                            <li><span class="benefit-icon" aria-hidden="true">💬</span><div><strong>Живое общение</strong><p>Встречайтесь лицом к лицу и находите людей, с которыми хочется продолжить общение.</p></div></li>
+                            <li><span class="benefit-icon" aria-hidden="true">🍽</span><div><strong>Небольшая компания</strong><p>За одним столом собираются 4–6 человек, включая вас.</p></div></li>
+                            <li><span class="benefit-icon" aria-hidden="true">🌿</span><div><strong>Меньше организационных забот</strong><p>Вы выбираете дату, а diner помогает собрать компанию и выбрать ресторан.</p></div></li>
+                            </ul>
+                        </section>
+                        <section class="subscription-stories" aria-labelledby="stories-title">
+                            <p class="story-stars" aria-hidden="true">★★★★★</p>
+                            <h2 id="stories-title">Знакомство начинается с одного ужина</h2>
+                            <p class="demo-note">Примеры впечатлений для макета</p>
+                            <div class="story-carousel">
+                                <article><p>Прийти одному, а уйти с ощущением, что провёл вечер с друзьями.</p><strong>Пример отзыва</strong></article>
+                                <article><p>Новые люди, вкусный ужин и разговор, который совсем не хочется заканчивать.</p><strong>Пример отзыва</strong></article>
+                            </div>
+                        </section>
+                        <div class="subscription-links">
+                            <button class="text-button" type="button" disabled>Восстановить покупки</button>
+                            <div><button class="text-button" type="button" disabled>Условия</button><button class="text-button" type="button" disabled>Конфиденциальность</button></div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="screen-footer subscription-footer">
+                    <p id="subscription-summary">2 490 ₽ за 3 месяца · демотариф</p>
+                    <button class="button button-dark" id="subscription-skip" type="button">Пропустить</button>
+                    <button class="text-button" type="button" disabled>Выбрать способ оплаты</button>
+                </footer>
             </div>
         </section>
     </main>
