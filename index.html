@@ -6,11 +6,12 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=loading1">
+    <link rel="stylesheet" href="css/style.css?v=booking1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
-    <script defer src="js/main.js?v=loading2"></script>
+    <script defer src="js/booking.js?v=booking1"></script>
+    <script defer src="js/main.js?v=booking1"></script>
 </head>
 <body>
     <main class="app">
@@ -858,6 +859,72 @@
                 <footer class="screen-footer">
                     <button class="button button-dark" type="button" id="ready-continue">Продолжить</button>
                 </footer>
+            </div>
+        </section>
+
+        <section class="screen question-screen" id="notifications" aria-labelledby="notifications-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="profile-ready" aria-label="Вернуться к завершению анкеты">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+            <div class="question-form">
+                <div class="question-scroll notifications-content">
+                    <svg class="notification-bell" width="48" height="52" viewBox="0 0 48 52" fill="currentColor" aria-hidden="true">
+                        <path d="M24 5c-10 0-15 7-15 17 0 9-3 12-5 15-2 3 0 6 4 6h32c4 0 6-3 4-6-2-3-5-6-5-15C39 12 34 5 24 5Z"/>
+                        <path d="M16 46c1 7 15 7 16 0Z"/>
+                    </svg>
+                    <h1 class="account-title" id="notifications-title" tabindex="-1">Будьте в курсе<br>ваших встреч</h1>
+                    <p class="notification-description">Напоминания об ужине, приглашения и сообщения от новых знакомых — всё в одном месте.</p>
+                    <div class="notification-previews">
+                        <article class="notification-card">
+                            <img src="assets/notification-smile.svg" width="40" height="40" alt="">
+                            <div>
+                                <div class="notification-line"><strong>Анна приглашает вас 🍽</strong><span>2 мин</span></div>
+                                <p>Познакомьтесь за ужином</p>
+                            </div>
+                        </article>
+                        <article class="notification-card">
+                            <img src="assets/diner-icon.svg" width="40" height="40" alt="diner">
+                            <div>
+                                <div class="notification-line"><strong>Ваша компания готова 👀</strong><span>1 ч</span></div>
+                                <p>Узнайте, с кем вы встретитесь</p>
+                            </div>
+                        </article>
+                        <article class="notification-card">
+                            <img src="assets/diner-icon.svg" width="40" height="40" alt="diner">
+                            <div>
+                                <div class="notification-line"><strong>Ваш ужин уже завтра</strong><span>сейчас</span></div>
+                                <p>Все детали встречи — в diner</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <footer class="screen-footer notification-footer">
+                    <button class="button button-dark notification-choice" type="button" data-notification-choice="enabled">Включить уведомления</button>
+                    <button class="text-button notification-choice" type="button" data-notification-choice="later">Позже</button>
+                    <p class="demo-note">Выбор уведомлений для демоверсии</p>
+                </footer>
+            </div>
+        </section>
+
+        <section class="screen question-screen" id="booking" aria-labelledby="booking-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="notifications" aria-label="Вернуться к уведомлениям">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <p>Первый ужин</p>
+            </header>
+            <div class="question-scroll booking-content">
+                <h1 class="account-title" id="booking-title" tabindex="-1">Забронируйте<br>свой первый ужин</h1>
+                <p class="demo-note">Демонстрационные даты ужинов</p>
+                <div id="dinner-suggestions"></div>
+                <p class="booking-selection" id="booking-selection" role="status" aria-live="polite"></p>
+                <p class="demo-note" id="booking-notification-note"></p>
             </div>
         </section>
     </main>

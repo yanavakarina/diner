@@ -545,3 +545,62 @@ legend {
 @media (prefers-reduced-motion: no-preference) {
     .step-progress { transition: stroke-dashoffset 180ms linear; }
 }
+
+.notifications-content { text-align: center; padding-top: 28px; }
+.notification-bell { color: #aba79f; transform-origin: 50% 15%; }
+.notifications-content .account-title { margin: 14px 0 16px; }
+.notification-description { color: var(--muted); font-size: 15px; line-height: 1.7; margin: 0; }
+.notification-previews { position: relative; padding: 30px 0 14px; margin-top: 26px; }
+.notification-previews::before { content: ""; position: absolute; inset: 0 10px -12px; border: 8px solid #e8e4dd; border-radius: 40px 40px 0 0; }
+.notification-previews::after { content: ""; position: absolute; width: 56px; height: 10px; background: #e2ded6; top: 12px; left: calc(50% - 28px); border-radius: 999px; }
+.notification-card { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: center; gap: 12px; padding: 16px 13px; margin-top: 10px; text-align: left; background: white; border-radius: 24px; }
+.notification-card img { display: block; border-radius: 10px; }
+.notification-line { display: flex; align-items: baseline; gap: 6px; }
+.notification-line strong { flex: 1; font-size: 13px; line-height: 1.4; }
+.notification-line > span { color: #aaa59c; font-size: 10px; white-space: nowrap; }
+.notification-card p { font-size: 12px; line-height: 1.5; color: var(--muted); margin: 5px 0 0; }
+.notification-footer { text-align: center; }
+.text-button { display: block; margin: 12px auto 0; padding: 10px 20px; border: 0; border-radius: 12px; background: transparent; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; font-weight: 600; cursor: pointer; }
+.demo-note { margin: 8px 0 12px; color: var(--muted); font-size: 11px; line-height: 1.5; text-align: center; }
+.booking-content { flex: 1; padding-bottom: 24px; }
+.booking-content .account-title { margin-top: 28px; margin-bottom: 16px; }
+.recommended-dinner { position: relative; padding: 24px 6px 6px; border: 1.5px solid var(--orange); border-radius: 26px; margin: 34px 0 14px; }
+.recommendation-label { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 7px 12px; border-radius: 10px; background: linear-gradient(105deg, var(--orange), var(--pink)); font-size: 13px; font-weight: 600; }
+.recommendation-description { font-size: 14px; color: var(--muted); margin: 8px 8px 10px; line-height: 1.5; }
+.recommendation-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 8px 16px; }
+.recommendation-tag { padding: 6px 9px; border-radius: 12px; background: white; font-size: 12px; font-weight: 600; }
+.button.dinner-card { display: grid; grid-template-columns: 52px minmax(0, 1fr) 32px; align-items: center; gap: 12px; min-height: 108px; text-align: left; padding: 16px; margin: 0 0 14px; background: white; color: var(--ink); border: 1.5px solid transparent; border-radius: 24px; box-shadow: 0 4px 18px #1414130a; }
+.recommended-dinner .dinner-card { margin-bottom: 0; }
+.dinner-card[aria-pressed="true"] { border-color: var(--ink); }
+.dinner-icon { display: grid; place-items: center; height: 52px; background: #ffebe1; border-radius: 18px; }
+.dinner-icon img { width: 32px; height: 32px; }
+.dinner-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.dinner-copy strong { font-size: 15px; line-height: 1.4; }
+.dinner-copy span { font-size: 14px; font-weight: 400; }
+.dinner-copy small { color: var(--muted); font-size: 12px; font-weight: 400; }
+.dinner-arrow { display: grid; place-items: center; width: 32px; height: 32px; background: linear-gradient(130deg, #77736f, #141413); color: white; border-radius: 50%; font-size: 21px; }
+.booking-selection { font-size: 13px; color: var(--muted); text-align: center; line-height: 1.5; }
+.booking-selection:empty { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+    #notifications:not([hidden]) .notification-bell { animation: ring-bell 6.5s 1.5s ease-in-out infinite; }
+    #notifications:not([hidden]) .notification-card { animation: gentle-appearance 850ms ease both; }
+    #notifications:not([hidden]) .notification-card:nth-child(1) { animation-delay: 500ms; }
+    #notifications:not([hidden]) .notification-card:nth-child(2) { animation-delay: 1000ms; }
+    #notifications:not([hidden]) .notification-card:nth-child(3) { animation-delay: 1500ms; }
+    #booking:not([hidden]) .booking-reveal { animation: gentle-appearance 850ms var(--reveal-delay, 600ms) ease both; }
+    .text-button { transition: background-color 400ms ease, transform 380ms ease; }
+    .text-button:active { transform: scale(0.97); }
+    @keyframes ring-bell {
+        0%, 2%, 18%, 100% { transform: rotate(0deg); }
+        4% { transform: rotate(14deg); }
+        6% { transform: rotate(-12deg); }
+        8% { transform: rotate(10deg); }
+        10% { transform: rotate(-8deg); }
+        12% { transform: rotate(6deg); }
+        14% { transform: rotate(-4deg); }
+        16% { transform: rotate(2deg); }
+    }
+}
+@media (hover: hover) and (pointer: fine) {
+    .text-button:hover { background: #eae5dc; }
+}

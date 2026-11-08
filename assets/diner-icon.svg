@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><linearGradient id="icon-gradient" x2="0" y2="1"><stop stop-color="#FF7D21"/><stop offset="1" stop-color="#FFC3F0"/></linearGradient></defs>
+  <rect width="100" height="100" rx="24" fill="url(#icon-gradient)"/>
+  <text x="50" y="59" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="-1.5" fill="#141413">diner</text>
+</svg>

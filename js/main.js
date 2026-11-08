@@ -471,3 +471,28 @@ document.getElementById("loading-back").addEventListener("click", function() {
 
     showScreen(document.getElementById("self-qualities"), document.getElementById("self-qualities-title"))
 })
+
+const notifications = document.getElementById("notifications")
+const notificationsTitle = document.getElementById("notifications-title")
+const booking = document.getElementById("booking")
+const bookingTitle = document.getElementById("booking-title")
+
+document.getElementById("ready-continue").addEventListener("click", function() {
+    showScreen(notifications, notificationsTitle)
+})
+
+for (const choice of document.querySelectorAll(".notification-choice")) {
+    choice.addEventListener("click", function() {
+        if (screenTransition) {
+            return
+        }
+
+        notifications.dataset.preference = choice.dataset.notificationChoice
+        document.getElementById("booking-notification-note").textContent =
+            choice.dataset.notificationChoice === "enabled" ?
+                "В демоверсии выбраны уведомления об ужинах." :
+                "Вы сможете вернуться к настройке напоминаний."
+        renderDinnerSuggestions()
+        showScreen(booking, bookingTitle)
+    })
+}
