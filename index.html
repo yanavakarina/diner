@@ -6,13 +6,13 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=home1">
+    <link rel="stylesheet" href="css/style.css?v=district1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/home.js?v=home1"></script>
-    <script defer src="js/main.js?v=home1"></script>
+    <script defer src="js/main.js?v=district1"></script>
 </head>
 <body>
     <main class="app">
@@ -1038,6 +1038,58 @@
                 <h2>Пока нет уведомлений</h2>
                 <p>Здесь появятся новости о ваших встречах и приглашения от новых знакомых.</p>
             </div>
+        </section>
+
+
+        <section class="screen question-screen district-screen" id="district" aria-labelledby="district-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="home" aria-label="Вернуться к событиям"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <p id="district-event-kind">Ужин</p>
+            </header>
+            <div class="progress" role="img" aria-label="Выбор района — первый шаг бронирования"><span></span></div>
+            <form class="question-form single-choice-form" id="district-form">
+                <div class="question-scroll">
+                    <fieldset>
+                        <legend id="district-title" tabindex="-1">В каком районе<br>вам будет удобно?</legend>
+                        <p class="hint district-city">В Челябинске</p>
+                        <div class="choices district-choices">
+                        <label class="choice district-choice">
+                            <input type="radio" name="district" value="Центральный район" required>
+                            <span class="choice-text">Центральный район</span>
+                            <span class="district-radio" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice district-choice">
+                            <input type="radio" name="district" value="Ленинский район" required>
+                            <span class="choice-text">Ленинский район</span>
+                            <span class="district-radio" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice district-choice">
+                            <input type="radio" name="district" value="Калининский район" required>
+                            <span class="choice-text">Калининский район</span>
+                            <span class="district-radio" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice district-choice">
+                            <input type="radio" name="district" value="Курчатовский район" required>
+                            <span class="choice-text">Курчатовский район</span>
+                            <span class="district-radio" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice district-choice">
+                            <input type="radio" name="district" value="Советский район" required>
+                            <span class="choice-text">Советский район</span>
+                            <span class="district-radio" aria-hidden="true"></span>
+                        </label>
+                        <label class="choice district-choice">
+                            <input type="radio" name="district" value="Тракторозаводский район" required>
+                            <span class="choice-text">Тракторозаводский район</span>
+                            <span class="district-radio" aria-hidden="true"></span>
+                        </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <footer class="screen-footer">
+                    <button class="button button-dark" id="district-continue" type="submit" disabled>Продолжить</button>
+                </footer>
+            </form>
         </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">

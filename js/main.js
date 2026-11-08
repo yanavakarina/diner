@@ -545,11 +545,27 @@ document.getElementById("open-inbox").addEventListener("click", function() {
     showScreen(document.getElementById("notification-inbox"), document.getElementById("inbox-title"))
 })
 
+const district = document.getElementById("district")
+const districtForm = document.getElementById("district-form")
+
 const eventDialogControl = createEventDialog(function(event) {
     if (screenTransition) return
-    subscription.dataset.eventDate = event.iso
-    subscription.dataset.eventType = event.type
-    subscription.querySelector(".subscription-close").dataset.backScreen = "home"
-    updateSubscriptionSummary()
-    showScreen(subscription, subscriptionTitle)
+    district.dataset.eventDate = event.iso
+    district.dataset.eventType = event.type
+    document.getElementById("district-event-kind").textContent = event.type === "coffee" ? "Кофе" : "Ужин"
+    showScreen(district, document.getElementById("district-title"))
+})
+
+
+function saveDistrictChoice() {
+    const selected = districtForm.querySelector('input[name="district"]:checked')
+    if (selected) district.dataset.selectedDistrict = selected.value
+}
+
+districtForm.addEventListener("change", saveDistrictChoice)
+districtForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+    if (screenTransition || !districtForm.checkValidity()) return
+    saveDistrictChoice()
+    // Следующий экран бронирования подключим на следующем шаге.
 })

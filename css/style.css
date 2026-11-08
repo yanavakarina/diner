@@ -771,3 +771,20 @@ legend {
     .event-dialog.is-closing::backdrop { animation: backdrop-disappear 420ms ease both; }
     @keyframes backdrop-disappear { from { background: #17151288; } to { background: #17151200; } }
 }
+
+
+/* Общий выбор района для кофе и ужина */
+#district .progress span { width: 50%; }
+.district-city { margin-top: 8px; margin-bottom: 30px; color: var(--ink); }
+.district-choices { padding-bottom: 8px; }
+.district-choice { min-height: 66px; padding: 15px 18px; border-radius: 20px; gap: 14px; }
+.district-choice:has(input:checked) { background: #fff; }
+.district-radio { display: grid; place-items: center; flex: 0 0 22px; height: 22px; border: 2px solid var(--line); border-radius: 50%; }
+.district-radio::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #8e8983, #141413); opacity: 0; transform: scale(.5); }
+.district-choice input:checked ~ .district-radio { border-color: #6f6b64; }
+.district-choice input:checked ~ .district-radio::after { opacity: 1; transform: scale(1); }
+#district-title:focus { outline: none; }
+@media (prefers-reduced-motion: no-preference) {
+    .district-radio { transition: border-color 400ms ease; }
+    .district-radio::after { transition: opacity 350ms ease, transform 400ms ease; }
+}
