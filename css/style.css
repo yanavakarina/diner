@@ -626,8 +626,14 @@ legend {
 .subscription-close { position: absolute; z-index: 2; top: max(16px, env(safe-area-inset-top)); right: 16px; color: white; background: #14141359; }
 .subscription-content { margin: 0; padding: 0; }
 .subscription-hero {
-    height: 190px;
-    background-image: linear-gradient(to bottom, transparent 52%, var(--paper)), url("../assets/dinner-reference.png");
+    height: 220px;
+    background-image: linear-gradient(to bottom,
+        rgb(247 244 237 / 0) 18%,
+        rgb(247 244 237 / 0.05) 36%,
+        rgb(247 244 237 / 0.3) 55%,
+        rgb(247 244 237 / 0.7) 74%,
+        rgb(247 244 237 / 0.95) 90%,
+        var(--paper) 100%), url("../assets/dinner-reference.png");
     background-position: center, center 44%;
     background-size: 100% 100%, 100% auto;
     background-repeat: no-repeat;
@@ -686,4 +692,16 @@ legend {
 @media (prefers-reduced-motion: no-preference) {
     .plan-radio { transition: border-color 400ms ease; }
     .plan-radio::after { transition: opacity 350ms ease, transform 400ms ease; }
+}
+
+#booking .screen-header { grid-template-columns: 80px minmax(0, 1fr) 80px; }
+.booking-skip {
+    justify-self: end;
+    min-height: 40px;
+    padding: 8px 0 8px 8px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
 }
