@@ -4,7 +4,7 @@ function loadDemoProfile() {
         const value = JSON.parse(localStorage.getItem(profileStorageKey))
         if (value && value.version === 1) {
             const answers = {}
-            for (const key of ["phone", "gender", "relationship", "children", "occupation", "goals", "energy", "hobbies", "birthday"]) {
+            for (const key of ["phone", "gender", "relationship", "occupation", "goals", "energy", "hobbies", "birthday"]) {
                 const answer = value.answers && value.answers[key]
                 if (typeof answer === "string") answers[key] = answer.slice(0, 500)
                 else if (Array.isArray(answer)) answers[key] = answer.filter(item => typeof item === "string").slice(0, 5).map(item => item.slice(0, 200))

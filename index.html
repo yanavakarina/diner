@@ -14,8 +14,8 @@
     <script defer src="js/home.js?v=meetings1"></script>
     <script defer src="js/main.js?v=meetings1"></script>
     <script defer src="js/meetings.js?v=profile1"></script>
-    <script defer src="js/profile.js?v=profile-edit1"></script>
-    <script defer src="js/profile-edit.js?v=profile-edit1"></script>
+    <script defer src="js/profile.js?v=profile-edit2"></script>
+    <script defer src="js/profile-edit.js?v=profile-edit2"></script>
 </head>
 <body>
     <main class="app">
@@ -1259,7 +1259,6 @@
                     <button class="profile-field" type="button" data-edit-profile-field="phone"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="16" height="24" rx="3"/><path d="M9 6h8M10 22h6"/><rect x="9" y="9" width="8" height="9" rx="1"/></svg></span><span class="profile-field-copy"><strong>Номер телефона</strong><span id="profile-value-phone">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
                     <button class="profile-field" type="button" data-edit-profile-field="gender"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="4"/><path d="M6 26v-9H3v-3c0-3 4-4 9-4s9 1 9 4v3h-3v9Z"/></svg></span><span class="profile-field-copy"><strong>Пол</strong><span id="profile-value-gender">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
                     <button class="profile-field" type="button" data-edit-profile-field="relationship"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24 3 15C-3 7 7 0 12 7 17 0 27 7 21 15Z"/></svg></span><span class="profile-field-copy"><strong>Статус отношений</strong><span id="profile-value-relationship">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
-                    <button class="profile-field" type="button" data-edit-profile-field="children"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><circle cx="3" cy="10" r="2"/><circle cx="21" cy="10" r="2"/><path d="M5 25c0-7 3-11 7-11s7 4 7 11ZM1 16c-2 2-2 5-1 7h3M23 16c2 2 2 5 1 7h-3"/></svg></span><span class="profile-field-copy"><strong>Дети</strong><span id="profile-value-children">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
                     <button class="profile-field" type="button" data-edit-profile-field="occupation"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="16" rx="3"/><path d="M8 9V4h8v5M2 16c6 3 14 3 20 0M11 17h2"/></svg></span><span class="profile-field-copy"><strong>Занятость</strong><span id="profile-value-occupation">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
                     <button class="profile-field" type="button" data-edit-profile-field="goals"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2 4 16h8l-2 10 11-16h-9Z"/></svg></span><span class="profile-field-copy"><strong>Цели знакомства</strong><span id="profile-value-goals">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
                     <button class="profile-field" type="button" data-edit-profile-field="energy"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 7 7.9.8-5.9 5.3 1.7 7.8L12 19l-6.8 3.9 1.7-7.8L1 9.8l7.9-.8Z"/></svg></span><span class="profile-field-copy"><strong>Характер общения</strong><span id="profile-value-energy">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
@@ -1269,14 +1268,7 @@
             </div>
         </section>
 
-        <section class="screen question-screen" id="profile-children" aria-labelledby="profile-children-title" hidden>
-            <header class="screen-header"><button class="back" type="button" aria-label="Вернуться к профилю без сохранения"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p>Дети</p></header>
-            <form class="question-form single-choice-form" id="profile-children-form"><div class="question-scroll"><fieldset><legend id="profile-children-title" tabindex="-1">Есть ли у вас дети?</legend><div class="choices single-choices">
-                <label class="choice choice-centered"><input type="radio" name="profile-children" value="Есть дети" required><span class="choice-text">Есть дети</span></label>
-                <label class="choice choice-centered"><input type="radio" name="profile-children" value="Нет детей" required><span class="choice-text">Нет детей</span></label>
-                <label class="choice choice-centered"><input type="radio" name="profile-children" value="Предпочитаю не указывать" required><span class="choice-text">Предпочитаю не указывать</span></label>
-            </div></fieldset></div><footer class="screen-footer"><button class="button button-dark" type="submit" disabled>Сохранить</button></footer></form>
-        </section>
+
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">
             <div class="event-sheet">

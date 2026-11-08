@@ -3,7 +3,6 @@ const profileFieldConfig = {
     phone: { screen: "phone", form: "phone-form", title: "phone-title", kind: "phone" },
     gender: { screen: "gender", form: "gender-form", title: "gender-title", kind: "single", group: "gender" },
     relationship: { screen: "relationship", form: "relationship-form", title: "relationship-title", kind: "single", group: "relationship" },
-    children: { screen: "profile-children", form: "profile-children-form", title: "profile-children-title", kind: "single", group: "profile-children" },
     occupation: { screen: "occupation", form: "occupation-form", title: "occupation-title", kind: "single", group: "occupation" },
     goals: { screen: "goals", form: "goals-form", title: "goals-title", kind: "multi", group: "goal", limit: 2 },
     energy: { screen: "energy", form: "energy-form", title: "energy-title", kind: "energy" },
