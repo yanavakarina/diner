@@ -808,3 +808,23 @@ legend {
 .details-values dt { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
 .details-values dd { margin: 0; font-size: 18px; line-height: 1.45; overflow-wrap: anywhere; }
 .details-edit { display: block; width: auto; max-width: 100%; min-height: 48px; margin: 0 auto; padding: 12px 20px; border: 1.5px solid #ded8ca; background: white; color: var(--ink); font-size: 15px; line-height: 1.4; }
+
+
+/* Редактирование предпочтений встречи */
+.preferences-scroll { padding-top: 24px; }
+#preferences-title { font-size: 26px; text-align: center; letter-spacing: -.7px; line-height: 1.2; margin: 8px 0 28px; }
+#preferences-title:focus { outline: none; }
+.preferences-group { margin-bottom: 28px; }
+.preferences-group legend { float: none; font-size: 17px; font-weight: 600; text-align: left; letter-spacing: -.2px; line-height: 1.4; margin: 0 0 16px; }
+.diet-switch-label { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 6px 0 22px; font-size: 16px; font-weight: 600; cursor: pointer; }
+.diet-switch-label input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.diet-switch { display: block; flex: 0 0 52px; height: 31px; border-radius: 40px; background: #b1ada6; padding: 3px; }
+.diet-switch::after { content: ""; display: block; width: 25px; height: 25px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px #14141312; }
+.diet-switch-label input:checked ~ .diet-switch { background: #00bf83; }
+.diet-switch-label input:checked ~ .diet-switch::after { transform: translateX(21px); }
+.diet-switch-label input:focus-visible ~ .diet-switch { outline: 3px solid var(--orange); outline-offset: 4px; }
+.diet-options { overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+    .diet-switch { transition: background-color 450ms ease; }
+    .diet-switch::after { transition: transform 450ms cubic-bezier(.4,0,.2,1); }
+}

@@ -6,13 +6,13 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=details1">
+    <link rel="stylesheet" href="css/style.css?v=preferences1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/home.js?v=district2"></script>
-    <script defer src="js/main.js?v=details1"></script>
+    <script defer src="js/main.js?v=preferences1"></script>
 </head>
 <body>
     <main class="app">
@@ -1106,14 +1106,66 @@
                         </header>
                         <dl class="details-values">
                             <div><dt>Район</dt><dd id="details-district"></dd></div>
-                            <div data-dinner-detail><dt>Бюджет</dt><dd>До 1 500 ₽</dd></div>
-                            <div data-dinner-detail><dt>Питание</dt><dd>Без ограничений</dd></div>
+                            <div data-dinner-detail><dt>Бюджет</dt><dd id="details-budget">До 1 500 ₽</dd></div>
+                            <div data-dinner-detail><dt>Питание</dt><dd id="details-diet">Без ограничений</dd></div>
                         </dl>
-                        <button class="button details-edit" type="button" data-back-screen="district">Изменить предпочтения</button>
+                        <button class="button details-edit" id="edit-preferences" type="button">Изменить предпочтения</button>
                     </article>
                 </div>
                 <footer class="screen-footer"><button class="button button-dark" id="details-confirm" type="button">Подтвердить</button></footer>
             </div>
+        </section>
+
+
+        <section class="screen question-screen preferences-screen" id="booking-preferences" aria-labelledby="preferences-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="booking-details" aria-label="Вернуться к деталям без сохранения"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <p id="preferences-header">Ужин</p>
+            </header>
+            <form class="question-form" id="preferences-form">
+                <div class="question-scroll preferences-scroll">
+                    <h1 id="preferences-title" tabindex="-1">Изменить предпочтения</h1>
+                    <fieldset class="preferences-group">
+                        <legend>Район встречи</legend>
+                        <div class="choices">
+<label class="choice district-choice"><input type="radio" name="edit-district" value="Центральный район" required><span class="choice-text">Центральный район</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-district" value="Ленинский район" required><span class="choice-text">Ленинский район</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-district" value="Калининский район" required><span class="choice-text">Калининский район</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-district" value="Курчатовский район" required><span class="choice-text">Курчатовский район</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-district" value="Советский район" required><span class="choice-text">Советский район</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-district" value="Тракторозаводский район" required><span class="choice-text">Тракторозаводский район</span><span class="district-radio" aria-hidden="true"></span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="preferences-group" id="budget-preferences">
+                        <legend>Какой бюджет вам подходит?</legend>
+                        <div class="choices">
+<label class="choice district-choice"><input type="radio" name="edit-budget" value="1000" required><span class="choice-text">Ужин до 1 000 ₽</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-budget" value="1500" required><span class="choice-text">Ужин до 1 500 ₽</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-budget" value="3000" required><span class="choice-text">Ужин до 3 000 ₽</span><span class="district-radio" aria-hidden="true"></span></label>
+                        </div>
+                    </fieldset>
+                    <div id="food-preferences">
+                        <label class="diet-switch-label" for="diet-enabled">
+                            <span>Есть предпочтения в питании</span>
+                            <input id="diet-enabled" type="checkbox" role="switch" aria-controls="diet-options" aria-expanded="false">
+                            <span class="diet-switch" aria-hidden="true"></span>
+                        </label>
+                        <div class="diet-options" id="diet-options" hidden>
+                            <fieldset class="preferences-group" id="diet-fieldset" disabled>
+                                <legend>Выберите подходящий вариант</legend>
+                                <div class="choices">
+<label class="choice district-choice"><input type="radio" name="edit-diet" value="Вегетарианское питание" required><span class="choice-text">Вегетарианское питание</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-diet" value="Веганское питание" required><span class="choice-text">Веганское питание</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-diet" value="Без глютена" required><span class="choice-text">Без глютена</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-diet" value="Халяль" required><span class="choice-text">Халяль</span><span class="district-radio" aria-hidden="true"></span></label>
+<label class="choice district-choice"><input type="radio" name="edit-diet" value="Кошерное питание" required><span class="choice-text">Кошерное питание</span><span class="district-radio" aria-hidden="true"></span></label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <footer class="screen-footer"><button class="button button-dark" id="preferences-save" type="submit">Сохранить</button></footer>
+            </form>
         </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">

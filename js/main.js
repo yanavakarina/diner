@@ -597,6 +597,8 @@ function renderBookingDetails() {
     document.getElementById("details-title").textContent = name
     document.getElementById("details-date").textContent = district.dataset.eventLabel + " · " + district.dataset.eventTime
     document.getElementById("details-district").textContent = district.dataset.selectedDistrict
+    document.getElementById("details-budget").textContent = "До " + Number(dinnerPreferences.budget).toLocaleString("ru-RU") + " ₽"
+    document.getElementById("details-diet").textContent = dinnerPreferences.dietEnabled ? dinnerPreferences.diet : "Без ограничений"
     document.getElementById("details-icon-image").src = coffee ? "assets/coffee.svg" : "assets/dinner.svg"
     document.getElementById("details-icon").classList.toggle("coffee-icon", coffee)
     for (const row of document.querySelectorAll("[data-dinner-detail]")) row.hidden = coffee
@@ -605,3 +607,89 @@ function renderBookingDetails() {
     details.dataset.eventDate = district.dataset.eventDate
     details.dataset.selectedDistrict = district.dataset.selectedDistrict
 }
+
+
+const dinnerPreferences = { budget: "1500", dietEnabled: false, diet: "" }
+const preferencesScreen = document.getElementById("booking-preferences")
+const preferencesForm = document.getElementById("preferences-form")
+const dietEnabled = document.getElementById("diet-enabled")
+const dietOptions = document.getElementById("diet-options")
+const dietFieldset = document.getElementById("diet-fieldset")
+let dietRevealAnimation
+let dietRevealVersion = 0
+
+function updatePreferencesValidity() {
+    document.getElementById("preferences-save").disabled = !preferencesForm.checkValidity()
+}
+
+async function updateDietVisibility(animate = true) {
+    const version = ++dietRevealVersion
+    const height = dietOptions.getBoundingClientRect().height
+    if (dietRevealAnimation) dietRevealAnimation.cancel()
+    const expanded = dietEnabled.checked && district.dataset.eventType !== "coffee"
+    dietEnabled.setAttribute("aria-expanded", String(expanded))
+    dietFieldset.disabled = !expanded
+    updatePreferencesValidity()
+    if (!animate || reducedMotion.matches || typeof dietOptions.animate !== "function") {
+        dietOptions.hidden = !expanded
+        return
+    }
+    if (dietOptions.hidden && !expanded) return
+    dietOptions.hidden = false
+    dietRevealAnimation = dietOptions.animate([
+        { height: height + "px", opacity: expanded ? 0 : 1 },
+        { height: (expanded ? dietOptions.scrollHeight : 0) + "px", opacity: expanded ? 1 : 0 }
+    ], { duration: 500, easing: "cubic-bezier(.4,0,.2,1)", fill: "both" })
+    try { await dietRevealAnimation.finished } catch { /* Новое переключение заменяет анимацию. */ }
+    if (version === dietRevealVersion) {
+        dietOptions.hidden = !expanded
+        dietRevealAnimation.cancel()
+        dietRevealAnimation = null
+    }
+}
+
+function openBookingPreferences() {
+    if (screenTransition) return
+    const coffee = district.dataset.eventType === "coffee"
+    document.getElementById("preferences-header").textContent = coffee ? "Кофе" : "Ужин"
+    document.getElementById("preferences-title").textContent = coffee ? "Изменить район" : "Изменить предпочтения"
+    for (const input of preferencesForm.querySelectorAll('input[name="edit-district"]')) {
+        input.checked = input.value === district.dataset.selectedDistrict
+    }
+    for (const input of preferencesForm.querySelectorAll('input[name="edit-budget"]')) {
+        input.checked = input.value === dinnerPreferences.budget
+    }
+    for (const input of preferencesForm.querySelectorAll('input[name="edit-diet"]')) {
+        input.checked = input.value === dinnerPreferences.diet
+    }
+    const budgetGroup = document.getElementById("budget-preferences")
+    budgetGroup.hidden = coffee
+    budgetGroup.disabled = coffee
+    document.getElementById("food-preferences").hidden = coffee
+    dietEnabled.disabled = coffee
+    dietEnabled.checked = dinnerPreferences.dietEnabled
+    updateDietVisibility(false)
+    preferencesScreen.querySelector(".question-scroll").scrollTop = 0
+    showScreen(preferencesScreen, document.getElementById("preferences-title"))
+}
+
+document.getElementById("edit-preferences").addEventListener("click", openBookingPreferences)
+dietEnabled.addEventListener("change", function() { updateDietVisibility() })
+preferencesForm.addEventListener("change", updatePreferencesValidity)
+preferencesForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+    if (screenTransition || !preferencesForm.reportValidity()) return
+    const selectedDistrict = preferencesForm.querySelector('input[name="edit-district"]:checked').value
+    district.dataset.selectedDistrict = selectedDistrict
+    for (const input of districtForm.querySelectorAll('input[name="district"]')) {
+        input.checked = input.value === selectedDistrict
+    }
+    if (district.dataset.eventType !== "coffee") {
+        dinnerPreferences.budget = preferencesForm.querySelector('input[name="edit-budget"]:checked').value
+        dinnerPreferences.dietEnabled = dietEnabled.checked
+        const selectedDiet = preferencesForm.querySelector('input[name="edit-diet"]:checked')
+        dinnerPreferences.diet = selectedDiet ? selectedDiet.value : ""
+    }
+    renderBookingDetails()
+    showScreen(document.getElementById("booking-details"), document.getElementById("details-title"))
+})
