@@ -135,5 +135,19 @@ function createBirthdayPicker() {
     }
 
     updateDate()
-    return { isValid }
+    function getValue() {
+        return yearWheel.getValue() + "-" + String(monthWheel.getValue()).padStart(2, "0") + "-" + String(dayWheel.getValue()).padStart(2, "0")
+    }
+    function setValue(value) {
+        if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+        const [year, month, day] = value.split("-").map(Number)
+        const count = new Date(year, month, 0).getDate()
+        if (year < currentYear - 120 || year > currentYear || month < 1 || month > 12 || day < 1 || day > count || new Date(year, month - 1, day) > today) return false
+        yearWheel.setOptions(Array.from({ length: 121 }, (_, index) => ({ value: currentYear - index, label: String(currentYear - index) })), year)
+        monthWheel.setOptions(monthNames.map((label, index) => ({ value: index + 1, label })), month)
+        dayWheel.setOptions(dayOptions(count), day)
+        updateDate()
+        return true
+    }
+    return { isValid, getValue, setValue }
 }

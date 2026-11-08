@@ -6,15 +6,16 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=profile1">
-    <script defer src="js/date-picker.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=profile-edit1">
+    <script defer src="js/date-picker.js?v=profile-edit1"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/home.js?v=meetings1"></script>
     <script defer src="js/main.js?v=meetings1"></script>
     <script defer src="js/meetings.js?v=profile1"></script>
-    <script defer src="js/profile.js?v=profile1"></script>
+    <script defer src="js/profile.js?v=profile-edit1"></script>
+    <script defer src="js/profile-edit.js?v=profile-edit1"></script>
 </head>
 <body>
     <main class="app">
@@ -1024,7 +1025,7 @@
                 <button type="button" aria-current="page"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M4 12 14 4l10 8v12H4Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11 21h6" stroke="var(--paper)" stroke-width="2" stroke-linecap="round"/></svg><span>Главная</span></button>
                 <button type="button" disabled aria-label="Чаты — скоро"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M24 13a10 10 0 0 1-14 9l-6 2 2-6A10 10 0 1 1 24 13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Чаты</span></button>
                 <button type="button" disabled aria-label="События — скоро"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="4" y="6" width="20" height="19" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="M9 3v6m10-6v6M8 15h12M8 20h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>События</span></button>
-                <button type="button" disabled aria-label="Профиль — скоро"><img src="assets/profile-avatar.svg" width="30" height="30" alt=""><span>Профиль</span></button>
+                <button type="button" disabled aria-label="Профиль — скоро"><img data-profile-avatar src="assets/profile-avatar.svg" width="30" height="30" alt=""><span>Профиль</span></button>
             </nav>
         </section>
 
@@ -1211,8 +1212,8 @@
             <header class="section-heading"><h1 id="profile-title" tabindex="-1">Профиль</h1></header>
             <div class="question-scroll section-scroll profile-content">
                 <div class="profile-identity">
-                    <img class="profile-avatar" src="assets/profile-avatar.svg" width="96" height="96" alt="Аватар профиля">
-                    <div class="profile-identity-copy"><h2 id="profile-name">Участник diner</h2><button class="profile-edit" type="button" disabled aria-label="Редактировать профиль — добавим позже">Редактировать профиль <span aria-hidden="true">›</span></button></div>
+                    <img class="profile-avatar" data-profile-avatar src="assets/profile-avatar.svg" width="96" height="96" alt="Аватар профиля">
+                    <div class="profile-identity-copy"><h2 id="profile-name">Участник diner</h2><button class="profile-edit" id="open-profile-editor" type="button">Редактировать профиль <span aria-hidden="true">›</span></button></div>
                 </div>
                 <div class="profile-stats" aria-label="Статистика прошедших встреч">
                     <div><strong id="profile-event-count">0</strong><span id="profile-event-label">встреч</span></div>
@@ -1241,6 +1242,40 @@
                 <p class="copy-status" id="profile-copy-status" role="status" aria-live="polite"></p>
             </div>
             <footer class="screen-footer security-footer"><button class="text-button delete-demo-account" type="button" disabled>Удалить аккаунт</button></footer>
+        </section>
+
+
+        <section class="screen question-screen profile-editor" id="profile-editor" aria-labelledby="profile-editor-title" hidden>
+            <header class="screen-header"><button class="back" type="button" data-back-screen="profile" aria-label="Вернуться в профиль"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 id="profile-editor-title" tabindex="-1">Профиль</h1></header>
+            <div class="question-scroll section-scroll profile-editor-scroll">
+                <div class="profile-photo-area">
+                    <div class="profile-photo-wrap"><img data-profile-avatar src="assets/profile-avatar.svg" class="profile-editor-avatar" width="140" height="140" alt="Фото профиля"><button class="profile-photo-button" id="choose-profile-photo" type="button" aria-label="Добавить или изменить фото"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h4l2-3h4l2 3h4v13H4Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" fill="white"/></svg></button></div>
+                    <input class="visually-hidden" id="profile-photo-file" type="file" accept="image/*" tabindex="-1" aria-label="Выберите фото профиля">
+                    <button class="text-button profile-photo-remove" id="remove-profile-photo" type="button" hidden>Убрать фото</button>
+                    <p class="profile-photo-status" id="profile-photo-status" role="status" aria-live="polite"></p>
+                </div>
+                <div class="profile-field-list">
+                    <button class="profile-field" type="button" data-edit-profile-field="name"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 23 8-20 8 20M7 16h10"/></svg></span><span class="profile-field-copy"><strong>Имя</strong><span id="profile-value-name">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="phone"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="16" height="24" rx="3"/><path d="M9 6h8M10 22h6"/><rect x="9" y="9" width="8" height="9" rx="1"/></svg></span><span class="profile-field-copy"><strong>Номер телефона</strong><span id="profile-value-phone">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="gender"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="4"/><path d="M6 26v-9H3v-3c0-3 4-4 9-4s9 1 9 4v3h-3v9Z"/></svg></span><span class="profile-field-copy"><strong>Пол</strong><span id="profile-value-gender">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="relationship"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24 3 15C-3 7 7 0 12 7 17 0 27 7 21 15Z"/></svg></span><span class="profile-field-copy"><strong>Статус отношений</strong><span id="profile-value-relationship">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="children"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><circle cx="3" cy="10" r="2"/><circle cx="21" cy="10" r="2"/><path d="M5 25c0-7 3-11 7-11s7 4 7 11ZM1 16c-2 2-2 5-1 7h3M23 16c2 2 2 5 1 7h-3"/></svg></span><span class="profile-field-copy"><strong>Дети</strong><span id="profile-value-children">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="occupation"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="16" rx="3"/><path d="M8 9V4h8v5M2 16c6 3 14 3 20 0M11 17h2"/></svg></span><span class="profile-field-copy"><strong>Занятость</strong><span id="profile-value-occupation">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="goals"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2 4 16h8l-2 10 11-16h-9Z"/></svg></span><span class="profile-field-copy"><strong>Цели знакомства</strong><span id="profile-value-goals">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="energy"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 7 7.9.8-5.9 5.3 1.7 7.8L12 19l-6.8 3.9 1.7-7.8L1 9.8l7.9-.8Z"/></svg></span><span class="profile-field-copy"><strong>Характер общения</strong><span id="profile-value-energy">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="hobbies"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 2.6 6.4L17 12l-6.4 2.6L8 21l-2.6-6.4L-1 12l6.4-2.6ZM20 16l1.5 3.5L25 21l-3.5 1.5L20 26l-1.5-3.5L15 21l3.5-1.5ZM20 1v8M16 5h8"/></svg></span><span class="profile-field-copy"><strong>Увлечения</strong><span id="profile-value-hobbies">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                    <button class="profile-field" type="button" data-edit-profile-field="birthday"><span class="profile-field-icon" aria-hidden="true"><svg viewBox="-2 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="11" width="20" height="14" rx="2"/><path d="M6 11V7m6 4V7m6 4V7M2 17q3 4 5 0 3 4 5 0 3 4 5 0 3 4 5 0M6 3v1m6-1v1m6-1v1"/></svg></span><span class="profile-field-copy"><strong>Дата рождения</strong><span id="profile-value-birthday">Не указано</span></span><span class="profile-chevron" aria-hidden="true">›</span></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="screen question-screen" id="profile-children" aria-labelledby="profile-children-title" hidden>
+            <header class="screen-header"><button class="back" type="button" aria-label="Вернуться к профилю без сохранения"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p>Дети</p></header>
+            <form class="question-form single-choice-form" id="profile-children-form"><div class="question-scroll"><fieldset><legend id="profile-children-title" tabindex="-1">Есть ли у вас дети?</legend><div class="choices single-choices">
+                <label class="choice choice-centered"><input type="radio" name="profile-children" value="Есть дети" required><span class="choice-text">Есть дети</span></label>
+                <label class="choice choice-centered"><input type="radio" name="profile-children" value="Нет детей" required><span class="choice-text">Нет детей</span></label>
+                <label class="choice choice-centered"><input type="radio" name="profile-children" value="Предпочитаю не указывать" required><span class="choice-text">Предпочитаю не указывать</span></label>
+            </div></fieldset></div><footer class="screen-footer"><button class="button button-dark" type="submit" disabled>Сохранить</button></footer></form>
         </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">

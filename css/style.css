@@ -950,3 +950,35 @@ legend {
     .profile-identity h2 { font-size: 21px; }
     .profile-edit { font-size: 13px; }
 }
+
+/* Редактирование данных профиля */
+.profile-edit { cursor: pointer; }
+.profile-avatar, .home-nav img, .profile-editor-avatar { border-radius: 50%; object-fit: cover; }
+.profile-editor .screen-header h1 { margin: 0; font-size: 16px; text-align: center; font-weight: 600; }
+#profile-editor-title:focus { outline: none; }
+.profile-editor-scroll { padding-top: 32px; }
+.profile-photo-area { text-align: center; margin: 0 0 24px; }
+.profile-photo-wrap { width: 140px; height: 140px; position: relative; margin: 0 auto; }
+.profile-editor-avatar { display: block; width: 140px; height: 140px; }
+.profile-photo-button { position: absolute; bottom: 0; right: -3px; width: 48px; height: 48px; display: grid; place-items: center; border: 0; border-radius: 50%; color: var(--ink); background: white; box-shadow: 0 2px 12px #1414130a; cursor: pointer; }
+.profile-photo-remove { display: block; margin: 16px auto 0; font-size: 12px; }
+.profile-photo-status { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 12px 0 0; }
+.profile-photo-status:empty { display: none; }
+.profile-field-list { background: white; padding: 8px 18px; border-radius: 25px; }
+.profile-field { display: flex; align-items: center; gap: 14px; background: none; border: 0; text-align: left; width: 100%; min-height: 79px; padding: 17px 0; cursor: pointer; color: var(--ink); }
+.profile-field + .profile-field { border-top: 1px solid #f7f4ed; }
+.profile-field-icon { width: 25px; flex: 0 0 25px; font-size: 27px; text-align: center; color: #aaa69e; line-height: 1; font-weight: 400; }
+.profile-field-copy { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1; }
+.profile-field-copy strong { font-size: 16px; line-height: 1.3; font-weight: 600; }
+.profile-field-copy > span { font-size: 14px; line-height: 1.5; color: #99948d; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.profile-field .profile-chevron { font-size: 24px; }
+.editing-profile-field .progress { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+    .profile-photo-button, .profile-field, .profile-edit { transition: transform 380ms ease, color 450ms ease; }
+    .profile-photo-button:active, .profile-field:active { transform: scale(.98); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .profile-field:hover .profile-chevron, .profile-edit:hover { color: var(--ink); }
+}
+
+.profile-field-icon svg { display: block; width: 26px; height: 28px; }

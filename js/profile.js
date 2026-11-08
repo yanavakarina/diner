@@ -3,10 +3,17 @@ function loadDemoProfile() {
     try {
         const value = JSON.parse(localStorage.getItem(profileStorageKey))
         if (value && value.version === 1) {
-            return { version: 1, name: typeof value.name === "string" ? value.name.slice(0, 80) : "", email: typeof value.email === "string" ? value.email.slice(0, 254) : "" }
+            const answers = {}
+            for (const key of ["phone", "gender", "relationship", "children", "occupation", "goals", "energy", "hobbies", "birthday"]) {
+                const answer = value.answers && value.answers[key]
+                if (typeof answer === "string") answers[key] = answer.slice(0, 500)
+                else if (Array.isArray(answer)) answers[key] = answer.filter(item => typeof item === "string").slice(0, 5).map(item => item.slice(0, 200))
+            }
+            const photo = typeof value.photo === "string" && /^data:image\/jpeg;base64,/.test(value.photo) && value.photo.length < 1500000 ? value.photo : ""
+            return { version: 1, name: typeof value.name === "string" ? value.name.slice(0, 80) : "", email: typeof value.email === "string" ? value.email.slice(0, 254) : "", answers, photo }
         }
     } catch { /* При недоступном хранилище используем значения формы. */ }
-    return { version: 1, name: "", email: "" }
+    return { version: 1, name: "", email: "", answers: {}, photo: "" }
 }
 const demoProfile = loadDemoProfile()
 function rememberDemoProfile() {
