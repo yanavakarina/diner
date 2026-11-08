@@ -982,3 +982,45 @@ legend {
 }
 
 .profile-field-icon svg { display: block; width: 26px; height: 28px; }
+
+/* Профили участников и личная переписка */
+.person-link { border: 0; background: transparent; color: var(--ink); padding: 5px 0; width: 100%; border-radius: 14px; cursor: pointer; text-align: left; }
+.person-row-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; flex: 1; }
+.person-row-interest { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.person-avatar { display: block; object-fit: cover; }
+.person-chevron { color: #aaa69e; font-size: 24px; margin-left: auto; line-height: 1; }
+.participant-scroll { padding-top: 25px; }
+.participant-identity { text-align: center; margin-bottom: 25px; }
+#participant-avatar { display: block; width: 136px; height: 136px; border-radius: 50%; object-fit: cover; margin: 0 auto 18px; }
+#participant-name { font-family: "Lora", Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -.8px; margin: 0 0 12px; }
+#participant-name:focus, #direct-chat-title:focus { outline: none; }
+.participant-energy { display: inline-block; border-radius: 12px; padding: 8px 12px; background: #f2e9fa; color: #705e80; font-size: 14px; margin-top: 4px; }
+.participant-hobbies { display: flex; flex-wrap: wrap; gap: 8px; }
+.participant-hobby { display: inline-block; border-radius: 14px; padding: 9px 12px; font-size: 14px; background: #f5efe5; }
+.participant-footer { flex-shrink: 0; }
+#participant-message-note { margin: 0 0 12px; text-align: center; font-size: 13px; }
+.shared-meeting-link { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; background: none; border: 0; padding: 14px 0; color: var(--ink); text-align: left; width: 100%; cursor: pointer; }
+.shared-meeting-link + .shared-meeting-link { border-top: 1px solid var(--line); }
+.shared-meeting-link strong { font-size: 15px; }
+.shared-meeting-link span { font-size: 13px; line-height: 1.5; }
+.shared-meeting-link small { font-size: 12px; color: #58745f; }
+.chat-author { display: inline-block; border: 0; background: none; font-size: 12px; font-weight: 600; color: #7c6291; text-align: left; padding: 0; cursor: pointer; text-underline-offset: 3px; }
+.direct-chat-heading { margin-top: 30px; }
+.direct-chat-card { display: flex; align-items: center; gap: 14px; width: 100%; color: var(--ink); text-align: left; cursor: pointer; }
+.direct-chat-card-copy { display: flex; flex-direction: column; gap: 7px; min-width: 0; flex: 1; }
+.direct-chat-card-copy strong { font-size: 16px; }
+.direct-chat-card-copy > span { font-size: 13px; color: var(--muted); line-height: 1.5; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+#direct-chat-person { display: flex; align-items: center; justify-content: center; gap: 9px; border: 0; background: none; padding: 0; color: var(--ink); font: inherit; cursor: pointer; margin: 0 auto; }
+#direct-chat-avatar { display: block; width: 30px; height: 30px; border-radius: 50%; }
+.direct-chat-context { flex-shrink: 0; margin: 16px 0 0; font-size: 12px; line-height: 1.5; text-align: center; color: var(--muted); }
+.direct-chat-screen .chat-demo-note { margin: 10px 0 16px; }
+.direct-chat-screen .chat-compose { padding-top: 8px; }
+.direct-chat-screen .home-nav { margin-top: 10px; }
+@media (prefers-reduced-motion: no-preference) {
+    .person-link, .direct-chat-card, .shared-meeting-link { transition: transform 380ms ease, background-color 450ms ease; }
+    .person-link:active, .direct-chat-card:active, .shared-meeting-link:active { transform: scale(.98); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .person-link:hover { background: #f7f4ed; }
+    .chat-author:hover { text-decoration: underline; }
+}

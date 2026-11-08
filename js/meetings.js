@@ -24,10 +24,10 @@ let selectedMeetingId = null
 let lastMeetingPhase = null
 let questionIndex = -1
 const demoPeople = [
-    { name: "Анна", interest: "Кино и прогулки", color: "#ffe0ec", initial: "А" },
-    { name: "Михаил", interest: "Музыка и путешествия", color: "#e8e1ff", initial: "М" },
-    { name: "Алина", interest: "Дизайн и кофе", color: "#ffe8d2", initial: "А" },
-    { name: "Саша", interest: "Природа и книги", color: "#d9eee1", initial: "С" }
+    { id: "anna", name: "Анна", interest: "Кино и прогулки", color: "#ffe0ec", initial: "А", energy: "Амбиверт", hobbies: ["Кино", "Прогулки", "Кофе"], bio: "Люблю хорошие фильмы, долгие прогулки и разговоры, в которых забываешь про время." },
+    { id: "mikhail", name: "Михаил", interest: "Музыка и путешествия", color: "#e8e1ff", initial: "М", energy: "Экстраверт", hobbies: ["Музыка", "Путешествия", "Концерты"], bio: "С удовольствием выбираюсь на концерты и в новые места. Всегда рад компании для маленького приключения." },
+    { id: "alina", name: "Алина", interest: "Дизайн и кофе", color: "#ffe8d2", initial: "А", energy: "Амбиверт", hobbies: ["Дизайн", "Кофе", "Выставки"], bio: "Замечаю красивые детали, люблю выставки и уютные кофейни. Буду рада обменяться любимыми местами." },
+    { id: "sasha", name: "Саша", interest: "Природа и книги", color: "#d9eee1", initial: "С", energy: "Интроверт", hobbies: ["Природа", "Книги", "Походы"], bio: "Хорошая книга, лесная тропа и спокойный разговор — отличный план на выходной." }
 ]
 const icebreakerQuestions = [
     "Какой фильм вы готовы советовать всем?", "Куда вы отправились бы на выходные?",
@@ -146,15 +146,23 @@ document.getElementById("meeting-back").addEventListener("click", function() { o
 document.getElementById("chat-back").addEventListener("click", function() { openMainTab("chats") })
 function appendPeople(container, includeSelf = false) {
     container.replaceChildren()
-    const people = includeSelf ? [...demoPeople, { name: "Вы", interest: "До встречи за одним столом", color: "#fff0d1", initial: "☺" }] : demoPeople
+    const people = includeSelf ? [...demoPeople, { id: "self", name: "Вы", interest: "До встречи за одним столом" }] : demoPeople
     for (const person of people) {
-        const row = meetingNode("div", "person-row")
-        const avatar = meetingNode("span", "person-avatar", person.initial)
-        avatar.style.background = person.color
-        avatar.setAttribute("aria-hidden", "true")
-        const copy = meetingNode("div")
-        copy.append(meetingNode("strong", "", person.name), meetingNode("p", "", person.interest))
-        row.append(avatar, copy)
+        const row = meetingNode("button", "person-row person-link")
+        row.type = "button"
+        row.dataset.personId = person.id
+        row.setAttribute("aria-label", person.id === "self" ? "Открыть свой профиль" : "Открыть профиль — " + person.name)
+        const avatar = meetingNode("img", "person-avatar")
+        avatar.src = person.id === "self" ? demoProfile.photo || "assets/profile-avatar.svg" : "assets/people/" + person.id + ".svg"
+        avatar.alt = ""
+        if (person.id === "self") avatar.setAttribute("data-profile-avatar", "")
+        const copy = meetingNode("span", "person-row-copy")
+        copy.append(meetingNode("strong", "", person.name), meetingNode("span", "person-row-interest", person.interest))
+        row.append(avatar, copy, meetingNode("span", "person-chevron", "›"))
+        row.addEventListener("click", function() {
+            if (person.id === "self") openMainTab("profile")
+            else openParticipantProfile(person.id)
+        })
         container.append(row)
     }
 }
@@ -247,6 +255,7 @@ function renderChatsList() {
     if (!meetingState.bookings.length) {
         list.append(meetingNode("div", "meeting-empty", "Чаты появятся здесь за полчаса до вашей первой встречи."))
     }
+    if (meetingState.bookings.length) list.append(meetingNode("h2", "meeting-group-heading", "Групповые чаты"))
     for (const meeting of meetingState.bookings) {
         const unlocked = getMeetingPhase(meeting) >= 2
         const card = meetingNode("article", "meeting-card")
@@ -255,10 +264,17 @@ function renderChatsList() {
         button.type = "button"; button.disabled = !unlocked
         button.addEventListener("click", function() { openMeetingChat(meeting.id) }); card.append(button); list.append(card)
     }
+    appendDirectChats(list)
 }
-function appendChatMessage(container, author, text, own = false) {
+function appendChatMessage(container, author, text, own = false, personId = null) {
     const message = meetingNode("article", "chat-message" + (own ? " own-message" : ""))
-    message.append(meetingNode("strong", "", author), meetingNode("p", "", text))
+    const name = meetingNode(personId ? "button" : "strong", personId ? "chat-author" : "", author)
+    if (personId) {
+        name.type = "button"
+        name.setAttribute("aria-label", "Открыть профиль — " + author)
+        name.addEventListener("click", function() { openParticipantProfile(personId) })
+    }
+    message.append(name, meetingNode("p", "", text))
     container.append(message)
 }
 function renderMeetingChat() {
@@ -267,8 +283,8 @@ function renderMeetingChat() {
     const container = document.getElementById("chat-messages")
     container.replaceChildren()
     document.getElementById("chat-title").textContent = meeting.type === "coffee" ? "Компания на кофе" : "Компания на ужин"
-    appendChatMessage(container, "Анна · пример", "Всем привет! Рада знакомству. Кто ещё любит обсуждать кино?")
-    appendChatMessage(container, "Михаил · пример", "Привет! До встречи — будет здорово познакомиться лично.")
+    appendChatMessage(container, "Анна · пример", "Всем привет! Рада знакомству. Кто ещё любит обсуждать кино?", false, "anna")
+    appendChatMessage(container, "Михаил · пример", "Привет! До встречи — будет здорово познакомиться лично.", false, "mikhail")
     for (const message of meeting.messages) appendChatMessage(container, "Вы", message.text, true)
     container.scrollTop = container.scrollHeight
 }

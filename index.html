@@ -6,16 +6,17 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=profile-edit1">
+    <link rel="stylesheet" href="css/style.css?v=people1">
     <script defer src="js/date-picker.js?v=profile-edit1"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/home.js?v=meetings1"></script>
     <script defer src="js/main.js?v=meetings1"></script>
-    <script defer src="js/meetings.js?v=profile1"></script>
+    <script defer src="js/meetings.js?v=people1"></script>
     <script defer src="js/profile.js?v=profile-edit2"></script>
     <script defer src="js/profile-edit.js?v=profile-edit2"></script>
+    <script defer src="js/people.js?v=people1"></script>
 </head>
 <body>
     <main class="app">
@@ -1269,6 +1270,28 @@
         </section>
 
 
+
+
+        <section class="screen question-screen participant-screen" id="participant-profile" aria-labelledby="participant-name" hidden>
+            <header class="screen-header"><button class="back" id="participant-back" type="button" aria-label="Вернуться к предыдущему экрану"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p>Профиль участника</p></header>
+            <div class="question-scroll section-scroll participant-scroll">
+                <div class="participant-identity"><img id="participant-avatar" width="136" height="136" src="assets/people/anna.svg" alt=""><h1 id="participant-name" tabindex="-1">Анна</h1><p class="demo-note">Участник демокомпании diner</p></div>
+                <section class="meeting-card"><h2>Немного о себе</h2><p id="participant-bio" class="meeting-description"></p><div id="participant-energy" class="participant-energy"></div></section>
+                <section class="meeting-card"><h2>Интересы</h2><div id="participant-hobbies" class="participant-hobbies"></div></section>
+                <section class="meeting-card"><h2>Общие встречи</h2><div id="participant-meetings" class="participant-meetings"></div></section>
+            </div>
+            <footer class="screen-footer participant-footer"><p id="participant-message-note" class="meeting-description"></p><button class="button button-dark" id="participant-message" type="button" disabled>Написать сообщение</button></footer>
+            <div data-app-nav="events"></div>
+        </section>
+
+        <section class="screen question-screen direct-chat-screen" id="direct-chat" aria-labelledby="direct-chat-title" hidden>
+            <header class="screen-header"><button class="back" id="direct-chat-back" type="button" aria-label="Вернуться к чатам"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="chat-title" id="direct-chat-title" tabindex="-1"><button id="direct-chat-person" type="button" aria-label="Открыть профиль собеседника"><img id="direct-chat-avatar" src="assets/people/anna.svg" width="30" height="30" alt=""><span id="direct-chat-name">Анна</span></button></h1></header>
+            <p class="direct-chat-context" id="direct-chat-context"></p>
+            <p class="chat-demo-note">Личный демо-чат · сообщения сохраняются только в этом браузере</p>
+            <div class="question-scroll chat-scroll" id="direct-chat-messages" role="log" aria-live="polite" aria-label="Личные сообщения"></div>
+            <form class="chat-compose" id="direct-chat-form"><label class="visually-hidden" for="direct-chat-input">Личное сообщение</label><input id="direct-chat-input" type="text" maxlength="1000" placeholder="Напишите сообщение…" autocomplete="off" required><button type="submit" aria-label="Отправить личное сообщение">↑</button></form>
+            <div data-app-nav="chats"></div>
+        </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">
             <div class="event-sheet">
