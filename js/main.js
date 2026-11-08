@@ -602,6 +602,7 @@ function renderBookingDetails() {
     document.getElementById("details-icon-image").src = coffee ? "assets/coffee.svg" : "assets/dinner.svg"
     document.getElementById("details-icon").classList.toggle("coffee-icon", coffee)
     for (const row of document.querySelectorAll("[data-dinner-detail]")) row.hidden = coffee
+    document.getElementById("edit-preferences").hidden = coffee
     const details = document.getElementById("booking-details")
     details.dataset.eventType = district.dataset.eventType
     details.dataset.eventDate = district.dataset.eventDate
@@ -649,24 +650,13 @@ async function updateDietVisibility(animate = true) {
 }
 
 function openBookingPreferences() {
-    if (screenTransition) return
-    const coffee = district.dataset.eventType === "coffee"
-    document.getElementById("preferences-header").textContent = coffee ? "Кофе" : "Ужин"
-    document.getElementById("preferences-title").textContent = coffee ? "Изменить район" : "Изменить предпочтения"
-    for (const input of preferencesForm.querySelectorAll('input[name="edit-district"]')) {
-        input.checked = input.value === district.dataset.selectedDistrict
-    }
+    if (screenTransition || district.dataset.eventType === "coffee") return
     for (const input of preferencesForm.querySelectorAll('input[name="edit-budget"]')) {
         input.checked = input.value === dinnerPreferences.budget
     }
     for (const input of preferencesForm.querySelectorAll('input[name="edit-diet"]')) {
         input.checked = input.value === dinnerPreferences.diet
     }
-    const budgetGroup = document.getElementById("budget-preferences")
-    budgetGroup.hidden = coffee
-    budgetGroup.disabled = coffee
-    document.getElementById("food-preferences").hidden = coffee
-    dietEnabled.disabled = coffee
     dietEnabled.checked = dinnerPreferences.dietEnabled
     updateDietVisibility(false)
     preferencesScreen.querySelector(".question-scroll").scrollTop = 0
@@ -678,18 +668,11 @@ dietEnabled.addEventListener("change", function() { updateDietVisibility() })
 preferencesForm.addEventListener("change", updatePreferencesValidity)
 preferencesForm.addEventListener("submit", function(event) {
     event.preventDefault()
-    if (screenTransition || !preferencesForm.reportValidity()) return
-    const selectedDistrict = preferencesForm.querySelector('input[name="edit-district"]:checked').value
-    district.dataset.selectedDistrict = selectedDistrict
-    for (const input of districtForm.querySelectorAll('input[name="district"]')) {
-        input.checked = input.value === selectedDistrict
-    }
-    if (district.dataset.eventType !== "coffee") {
-        dinnerPreferences.budget = preferencesForm.querySelector('input[name="edit-budget"]:checked').value
-        dinnerPreferences.dietEnabled = dietEnabled.checked
-        const selectedDiet = preferencesForm.querySelector('input[name="edit-diet"]:checked')
-        dinnerPreferences.diet = selectedDiet ? selectedDiet.value : ""
-    }
+    if (screenTransition || district.dataset.eventType === "coffee" || !preferencesForm.reportValidity()) return
+    dinnerPreferences.budget = preferencesForm.querySelector('input[name="edit-budget"]:checked').value
+    dinnerPreferences.dietEnabled = dietEnabled.checked
+    const selectedDiet = preferencesForm.querySelector('input[name="edit-diet"]:checked')
+    dinnerPreferences.diet = selectedDiet ? selectedDiet.value : ""
     renderBookingDetails()
     showScreen(document.getElementById("booking-details"), document.getElementById("details-title"))
 })
