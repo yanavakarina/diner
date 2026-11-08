@@ -113,6 +113,7 @@ document.getElementById("subscription-demo-buy").addEventListener("click", funct
 function openMainTab(tab) {
     if (screenTransition) return
     if (tab === "home") { openHome(); return }
+    if (tab === "profile") { openProfile(); return }
     if (tab === "events") {
         renderMeetingsList()
         showScreen(document.getElementById("meetings"), document.getElementById("meetings-title"))
@@ -123,9 +124,9 @@ function openMainTab(tab) {
 }
 function bindAppNavigation(nav, active) {
     const tabs = ["home", "chats", "events", "profile"]
-    const labels = ["Главная", "Чаты", "События", "Профиль — скоро"]
+    const labels = ["Главная", "Чаты", "События", "Профиль"]
     for (const [index, button] of [...nav.querySelectorAll("button")].entries()) {
-        button.disabled = index === 3
+        button.disabled = false
         button.setAttribute("aria-label", labels[index])
         button.removeAttribute("aria-current")
         if (tabs[index] === active) button.setAttribute("aria-current", "page")

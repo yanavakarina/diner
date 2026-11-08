@@ -6,14 +6,15 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=meetings3">
+    <link rel="stylesheet" href="css/style.css?v=profile1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/home.js?v=meetings1"></script>
     <script defer src="js/main.js?v=meetings1"></script>
-    <script defer src="js/meetings.js?v=meetings3"></script>
+    <script defer src="js/meetings.js?v=profile1"></script>
+    <script defer src="js/profile.js?v=profile1"></script>
 </head>
 <body>
     <main class="app">
@@ -1023,7 +1024,7 @@
                 <button type="button" aria-current="page"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M4 12 14 4l10 8v12H4Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11 21h6" stroke="var(--paper)" stroke-width="2" stroke-linecap="round"/></svg><span>Главная</span></button>
                 <button type="button" disabled aria-label="Чаты — скоро"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M24 13a10 10 0 0 1-14 9l-6 2 2-6A10 10 0 1 1 24 13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Чаты</span></button>
                 <button type="button" disabled aria-label="События — скоро"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="4" y="6" width="20" height="19" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="M9 3v6m10-6v6M8 15h12M8 20h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>События</span></button>
-                <button type="button" disabled aria-label="Профиль — скоро"><img src="assets/notification-smile.svg" width="30" height="30" alt=""><span>Профиль</span></button>
+                <button type="button" disabled aria-label="Профиль — скоро"><img src="assets/profile-avatar.svg" width="30" height="30" alt=""><span>Профиль</span></button>
             </nav>
         </section>
 
@@ -1203,6 +1204,43 @@
             <section class="icebreaker"><button class="text-button" id="question-next" type="button">Вопрос для знакомства ↻</button><p id="question-text" aria-live="polite"></p></section>
             <form class="chat-compose" id="chat-form"><label class="visually-hidden" for="chat-input">Ваше сообщение</label><input id="chat-input" type="text" maxlength="1000" placeholder="Напишите компании…" autocomplete="off" required><button type="submit" aria-label="Отправить сообщение">↑</button></form>
             <div data-app-nav="chats"></div>
+        </section>
+
+
+        <section class="screen question-screen profile-screen" id="profile" aria-labelledby="profile-title" hidden>
+            <header class="section-heading"><h1 id="profile-title" tabindex="-1">Профиль</h1></header>
+            <div class="question-scroll section-scroll profile-content">
+                <div class="profile-identity">
+                    <img class="profile-avatar" src="assets/profile-avatar.svg" width="96" height="96" alt="Аватар профиля">
+                    <div class="profile-identity-copy"><h2 id="profile-name">Участник diner</h2><button class="profile-edit" type="button" disabled aria-label="Редактировать профиль — добавим позже">Редактировать профиль <span aria-hidden="true">›</span></button></div>
+                </div>
+                <div class="profile-stats" aria-label="Статистика прошедших встреч">
+                    <div><strong id="profile-event-count">0</strong><span id="profile-event-label">встреч</span></div>
+                    <div><strong id="profile-people-count">0</strong><span id="profile-people-label">знакомств</span></div>
+                </div>
+                <section class="profile-account" aria-labelledby="profile-account-title">
+                    <h2 id="profile-account-title">Аккаунт</h2>
+                    <button class="profile-security-link" id="open-security" type="button">
+                        <svg width="26" height="28" viewBox="0 0 28 30" fill="none" aria-hidden="true"><path d="M20 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0ZM5 26c0-6 4-9 9-9s9 3 9 9c-6 2-12 2-18 0Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Логин и безопасность</span><span class="profile-chevron" aria-hidden="true">›</span>
+                    </button>
+                </section>
+                <p class="profile-wordmark">diner</p>
+            </div>
+            <div data-app-nav="profile"></div>
+        </section>
+
+        <section class="screen question-screen security-screen" id="security" aria-labelledby="security-title" hidden>
+            <header class="screen-header"><button class="back" type="button" data-back-screen="profile" aria-label="Вернуться в профиль"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 id="security-title" tabindex="-1">Логин и безопасность</h1></header>
+            <div class="question-scroll security-content">
+                <div class="security-card">
+                    <div class="security-row"><div class="security-copy"><h2>Электронная почта</h2><p id="security-email">Почта не указана</p></div><button class="text-button" id="copy-profile-email" type="button" disabled>Копировать</button></div>
+                    <div class="security-row"><div class="security-copy"><h2>Пароль</h2><p>Не задан</p></div><button class="text-button" type="button" disabled>Изменить</button></div>
+                </div>
+                <p class="demo-note">Демонстрационный профиль · без пароля</p>
+                <p class="copy-status" id="profile-copy-status" role="status" aria-live="polite"></p>
+            </div>
+            <footer class="screen-footer security-footer"><button class="text-button delete-demo-account" type="button" disabled>Удалить аккаунт</button></footer>
         </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">
