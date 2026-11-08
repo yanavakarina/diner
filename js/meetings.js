@@ -217,7 +217,7 @@ function renderMeetingView() {
     const advance = document.getElementById("meeting-advance")
     advance.hidden = phase === 3
     advance.textContent = ["Демо · перейти ко времени раскрытия", "Демо · до встречи 30 минут", "Демо · завершить встречу", ""][phase]
-    document.getElementById("meeting-reset-time").hidden = meeting.demoOffset === 0
+    document.querySelector(".meeting-demo-controls").hidden = phase === 3
     updateMeetingCountdown()
 }
 function updateMeetingCountdown() {
@@ -235,14 +235,6 @@ document.getElementById("meeting-advance").addEventListener("click", function() 
     const times = getMeetingTimes(meeting)
     const target = [times.reveal, times.chat, times.end][phase]
     meeting.demoOffset = Math.max(meeting.demoOffset, target - Date.now() + 100)
-    saveMeetingState()
-    renderMeetingView()
-})
-document.getElementById("meeting-reset-time").addEventListener("click", function() {
-    if (screenTransition) return
-    const meeting = getMeetingById()
-    if (!meeting) return
-    meeting.demoOffset = 0
     saveMeetingState()
     renderMeetingView()
 })
