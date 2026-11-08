@@ -39,6 +39,7 @@ function renderDinnerSuggestions() {
     const booking = document.getElementById("booking")
     const container = document.getElementById("dinner-suggestions")
     const selection = document.getElementById("booking-selection")
+    const bookButton = document.getElementById("book-dinner")
     const qualities = [...document.querySelectorAll('input[name="self-qualities"]:checked')].map(function(input) {
         return {
             label: input.value,
@@ -56,6 +57,7 @@ function renderDinnerSuggestions() {
     }
 
     selection.textContent = previouslySelected ? "Выбрана дата — " + previouslySelected.label.toLocaleLowerCase("ru-RU") + ", 19:00." : ""
+    bookButton.disabled = !previouslySelected
     container.replaceChildren()
 
     for (let index = 0; index < dates.length; index++) {
@@ -89,16 +91,23 @@ function renderDinnerSuggestions() {
         const arrow = document.createElement("span")
         arrow.className = "dinner-arrow"
         arrow.setAttribute("aria-hidden", "true")
-        arrow.textContent = booking.dataset.selectedDate === date.iso ? "✓" : "→"
+        const indicator = document.createElement("img")
+        indicator.className = "dinner-indicator"
+        indicator.src = booking.dataset.selectedDate === date.iso ? "assets/dinner-check.svg" : "assets/dinner-arrow.svg"
+        indicator.alt = ""
+        indicator.width = 20
+        indicator.height = 20
+        arrow.append(indicator)
         card.append(icon, copy, arrow)
 
         card.addEventListener("click", function() {
             booking.dataset.selectedDate = date.iso
+            bookButton.disabled = false
 
             for (const button of container.querySelectorAll(".dinner-card")) {
                 const selected = button.dataset.date === date.iso
                 button.setAttribute("aria-pressed", selected ? "true" : "false")
-                button.querySelector(".dinner-arrow").textContent = selected ? "✓" : "→"
+                button.querySelector(".dinner-indicator").src = selected ? "assets/dinner-check.svg" : "assets/dinner-arrow.svg"
             }
 
             selection.textContent = "Выбрана дата — " + date.label.toLocaleLowerCase("ru-RU") + ", 19:00."

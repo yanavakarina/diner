@@ -619,3 +619,5 @@ legend {
 @media (hover: hover) and (pointer: fine) {
     .text-button:hover { background: #eae5dc; }
 }
+
+.dinner-indicator { display: block; width: 20px; height: 20px; }

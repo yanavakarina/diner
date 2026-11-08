@@ -6,11 +6,11 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=notifications2">
+    <link rel="stylesheet" href="css/style.css?v=booking2">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
-    <script defer src="js/booking.js?v=booking1"></script>
+    <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/main.js?v=booking1"></script>
 </head>
 <body>
@@ -919,12 +919,17 @@
                 </button>
                 <p>Первый ужин</p>
             </header>
+            <div class="question-form">
             <div class="question-scroll booking-content">
                 <h1 class="account-title" id="booking-title" tabindex="-1">Забронируйте<br>свой первый ужин</h1>
                 <p class="demo-note">Демонстрационные даты ужинов</p>
                 <div id="dinner-suggestions"></div>
                 <p class="booking-selection" id="booking-selection" role="status" aria-live="polite"></p>
                 <p class="demo-note" id="booking-notification-note"></p>
+            </div>
+            <footer class="screen-footer">
+                <button class="button button-dark" id="book-dinner" type="button" disabled>Забронировать</button>
+            </footer>
             </div>
         </section>
     </main>
