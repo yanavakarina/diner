@@ -568,6 +568,8 @@ const eventDialogControl = createEventDialog(function(event, dialog) {
     if (screenTransition) return
     district.dataset.eventDate = event.iso
     district.dataset.eventType = event.type
+    district.dataset.eventLabel = event.label
+    district.dataset.eventTime = event.time
     document.getElementById("district-event-kind").textContent = event.type === "coffee" ? "Кофе" : "Ужин"
     return showScreen(district, document.getElementById("district-title"), dialog)
 })
@@ -583,5 +585,23 @@ districtForm.addEventListener("submit", function(event) {
     event.preventDefault()
     if (screenTransition || !districtForm.checkValidity()) return
     saveDistrictChoice()
-    // Следующий экран бронирования подключим на следующем шаге.
+    renderBookingDetails()
+    showScreen(document.getElementById("booking-details"), document.getElementById("details-title"))
 })
+
+
+function renderBookingDetails() {
+    const coffee = district.dataset.eventType === "coffee"
+    const name = coffee ? "Кофе" : "Ужин"
+    document.getElementById("details-header").textContent = name
+    document.getElementById("details-title").textContent = name
+    document.getElementById("details-date").textContent = district.dataset.eventLabel + " · " + district.dataset.eventTime
+    document.getElementById("details-district").textContent = district.dataset.selectedDistrict
+    document.getElementById("details-icon-image").src = coffee ? "assets/coffee.svg" : "assets/dinner.svg"
+    document.getElementById("details-icon").classList.toggle("coffee-icon", coffee)
+    for (const row of document.querySelectorAll("[data-dinner-detail]")) row.hidden = coffee
+    const details = document.getElementById("booking-details")
+    details.dataset.eventType = district.dataset.eventType
+    details.dataset.eventDate = district.dataset.eventDate
+    details.dataset.selectedDistrict = district.dataset.selectedDistrict
+}

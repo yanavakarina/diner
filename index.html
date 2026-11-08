@@ -6,13 +6,13 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=district2">
+    <link rel="stylesheet" href="css/style.css?v=details1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
     <script defer src="js/home.js?v=district2"></script>
-    <script defer src="js/main.js?v=district2"></script>
+    <script defer src="js/main.js?v=details1"></script>
 </head>
 <body>
     <main class="app">
@@ -1089,6 +1089,31 @@
                     <button class="button button-dark" id="district-continue" type="submit" disabled>Продолжить</button>
                 </footer>
             </form>
+        </section>
+
+
+        <section class="screen question-screen booking-details" id="booking-details" aria-labelledby="details-title" hidden>
+            <header class="screen-header">
+                <button class="back" type="button" data-back-screen="district" aria-label="Вернуться к выбору района"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <p id="details-header">Ужин</p>
+            </header>
+            <div class="question-form">
+                <div class="question-scroll details-scroll">
+                    <article class="details-card">
+                        <header class="details-event">
+                            <span class="dinner-icon" id="details-icon"><img id="details-icon-image" src="assets/dinner.svg" alt=""></span>
+                            <div><h1 id="details-title" tabindex="-1">Ужин</h1><p id="details-date"></p></div>
+                        </header>
+                        <dl class="details-values">
+                            <div><dt>Район</dt><dd id="details-district"></dd></div>
+                            <div data-dinner-detail><dt>Бюджет</dt><dd>До 1 500 ₽</dd></div>
+                            <div data-dinner-detail><dt>Питание</dt><dd>Без ограничений</dd></div>
+                        </dl>
+                        <button class="button details-edit" type="button" data-back-screen="district">Изменить предпочтения</button>
+                    </article>
+                </div>
+                <footer class="screen-footer"><button class="button button-dark" id="details-confirm" type="button">Подтвердить</button></footer>
+            </div>
         </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">
