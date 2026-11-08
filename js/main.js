@@ -51,7 +51,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 let currentScreen = welcome
 let screenTransition = false
 
-async function showScreen(screen, focusTarget) {
+async function showScreen(screen, focusTarget, overlay = null) {
     if (screenTransition || screen === currentScreen) {
         return
     }
@@ -65,6 +65,7 @@ async function showScreen(screen, focusTarget) {
 
     if (reducedMotion.matches || typeof screen.animate !== "function") {
         previous.hidden = true
+        if (overlay) overlay.close()
         currentScreen = screen
         focusTarget.focus({ preventScroll: true })
         return
@@ -77,11 +78,22 @@ async function showScreen(screen, focusTarget) {
     const timing = { duration: 800, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
 
     try {
-        animations.push(previous.animate([
-            { opacity: 1, offset: 0 },
-            { opacity: 0, offset: 0.4 },
-            { opacity: 0, offset: 1 }
-        ], timing))
+        if (overlay) {
+            // Скрываем главную сразу, пока окно ещё открыто поверх нового экрана.
+            previous.hidden = true
+            overlay.classList.add("is-navigating")
+            animations.push(overlay.animate([
+                { opacity: 1, offset: 0 },
+                { opacity: 1, offset: 0.15 },
+                { opacity: 0, offset: 1 }
+            ], timing))
+        } else {
+            animations.push(previous.animate([
+                { opacity: 1, offset: 0 },
+                { opacity: 0, offset: 0.4 },
+                { opacity: 0, offset: 1 }
+            ], timing))
+        }
         animations.push(screen.animate([
             { opacity: 0, offset: 0 },
             { opacity: 0, offset: 0.25 },
@@ -107,6 +119,10 @@ async function showScreen(screen, focusTarget) {
     } catch {
         // При отмене анимации всё равно завершаем переход на выбранный экран.
     } finally {
+        if (overlay) {
+            overlay.close()
+            overlay.classList.remove("is-navigating")
+        }
         for (const animation of animations) {
             animation.cancel()
         }
@@ -548,12 +564,12 @@ document.getElementById("open-inbox").addEventListener("click", function() {
 const district = document.getElementById("district")
 const districtForm = document.getElementById("district-form")
 
-const eventDialogControl = createEventDialog(function(event) {
+const eventDialogControl = createEventDialog(function(event, dialog) {
     if (screenTransition) return
     district.dataset.eventDate = event.iso
     district.dataset.eventType = event.type
     document.getElementById("district-event-kind").textContent = event.type === "coffee" ? "Кофе" : "Ужин"
-    showScreen(district, document.getElementById("district-title"))
+    return showScreen(district, document.getElementById("district-title"), dialog)
 })
 
 

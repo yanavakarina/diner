@@ -774,7 +774,6 @@ legend {
 
 
 /* Общий выбор района для кофе и ужина */
-#district .progress span { width: 50%; }
 .district-city { margin-top: 8px; margin-bottom: 30px; color: var(--ink); }
 .district-choices { padding-bottom: 8px; }
 .district-choice { min-height: 66px; padding: 15px 18px; border-radius: 20px; gap: 14px; }
@@ -787,4 +786,8 @@ legend {
 @media (prefers-reduced-motion: no-preference) {
     .district-radio { transition: border-color 400ms ease; }
     .district-radio::after { transition: opacity 350ms ease, transform 400ms ease; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .event-dialog.is-navigating::backdrop { animation: backdrop-disappear 800ms cubic-bezier(.4, 0, .2, 1) both; }
 }

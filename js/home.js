@@ -125,8 +125,15 @@ function createEventDialog(onBook) {
         if (event.target === dialog) close()
     })
     bookButton.addEventListener("click", async function() {
-        const event = selectedEvent
-        if (await close()) onBook(event)
+        if (!dialog.open || closing) return
+        closing = true
+        if (entering) entering.cancel()
+        try {
+            // Передаём открытое окно переходу, без промежуточного закрытия вниз.
+            await onBook(selectedEvent, dialog)
+        } finally {
+            closing = false
+        }
     })
 
     return {
