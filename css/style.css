@@ -828,3 +828,82 @@ legend {
     .diet-switch { transition: background-color 450ms ease; }
     .diet-switch::after { transition: transform 450ms cubic-bezier(.4,0,.2,1); }
 }
+
+/* Встречи после записи, вкладки и демо-чат */
+.home-nav button { color: #99948d; cursor: pointer; }
+.home-nav button[aria-current="page"] { color: var(--ink); font-weight: 600; }
+.home-nav button:disabled { cursor: default; }
+.home-event-booked .dinner-arrow { background: #58745f; }
+.home-event .home-booked-note { color: #58745f; font-size: 11px; line-height: 1.5; }
+.section-heading { flex-shrink: 0; padding: 16px 2px 22px; }
+.section-heading h1 { font-family: "Lora", Georgia, serif; font-size: 36px; font-weight: 400; letter-spacing: -1px; margin: 0; }
+.section-eyebrow { color: var(--muted); font-size: 13px; margin: 0 0 9px; }
+.section-scroll { flex: 1; padding-bottom: 14px; }
+.section-heading h1:focus, #meeting-title:focus, #booking-success-title:focus, #chat-title:focus { outline: none; }
+.meeting-card { border: 1px solid var(--line); background: white; border-radius: 25px; padding: 22px; margin: 0 0 16px; }
+.meeting-card h2 { font-size: 19px; margin: 0 0 14px; letter-spacing: -.4px; }
+.meeting-card h3 { font-size: 23px; margin: 12px 0; line-height: 1.25; letter-spacing: -.5px; }
+.meeting-card p { line-height: 1.6; }
+.meeting-description { font-size: 15px; line-height: 1.7; color: var(--muted); }
+.meeting-date { font-size: 14px; line-height: 1.6; }
+.meeting-status { display: inline-block; border-radius: 999px; background: #e9f0e6; color: #527058; padding: 6px 10px; font-size: 12px; line-height: 1.4; }
+.meeting-group-heading { font-size: 16px; margin: 0 0 18px; color: var(--muted); font-weight: 500; }
+.event-list-card .button { margin-top: 8px; font-size: 15px; min-height: 48px; }
+#meeting-connections { padding-top: 10px; }
+#meeting-connections > h2 { font-size: 23px; }
+.meeting-view-content { padding-top: 25px; }
+#meeting-title { font-size: 29px; line-height: 1.2; letter-spacing: -.9px; margin: 18px 0 14px; }
+#meeting-district { margin-bottom: 24px; }
+.countdown-card { background: linear-gradient(135deg, #ffe8dd, #ffe8f5 75%); text-align: center; border-color: transparent; }
+.countdown-card > p:first-child { font-size: 14px; margin: 0; }
+.meeting-countdown { font-size: clamp(27px, 8vw, 35px); letter-spacing: -.5px; font-weight: 600; font-variant-numeric: tabular-nums; margin: 14px 0; white-space: nowrap; }
+.countdown-card .meeting-description { font-size: 13px; margin: 0; }
+.locked-symbol { text-align: center; color: #d8c9ba; font-size: 44px; margin: 14px 0; }
+.map-link { display: inline-block; color: var(--ink); font-size: 14px; font-weight: 600; text-underline-offset: 4px; margin: 6px 0; }
+.people-list { display: grid; gap: 16px; margin-top: 18px; }
+.person-row { display: flex; align-items: center; gap: 12px; }
+.person-avatar { display: grid; place-items: center; flex: 0 0 43px; width: 43px; height: 43px; border-radius: 50%; font-size: 18px; font-family: "Lora", Georgia, serif; }
+.person-row strong { font-size: 14px; }
+.person-row p { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+.meeting-demo-controls { border: 1px dashed #d4c5b8; border-radius: 22px; padding: 18px; text-align: center; margin: 22px 0 8px; }
+.meeting-demo-controls > p:first-child { font-size: 13px; margin: 0 0 13px; color: var(--muted); }
+.demo-step { border: 1px solid #cdb8a8; background: transparent; border-radius: 16px; padding: 13px; color: var(--ink); width: 100%; font-size: 14px; line-height: 1.4; cursor: pointer; }
+.meeting-demo-controls .demo-note { margin: 12px 0 0; font-size: 11px; }
+.meeting-empty { padding: 50px 10px; text-align: center; font-size: 16px; color: var(--muted); line-height: 1.7; }
+.meeting-empty h2 { font-size: 25px; letter-spacing: -.5px; line-height: 1.2; color: var(--ink); }
+.meeting-empty .button { margin-top: 20px; }
+.empty-art { display: block; font-size: 65px; color: #d6b3ca; }
+.success-content { min-height: 0; flex: 1; overflow-y: auto; padding: 35px 4px 16px; text-align: center; }
+.booking-success-badge { display: block; width: 115px; height: 115px; margin: 10px auto 24px; }
+.success-content h1 { font-family: "Lora", Georgia, serif; font-weight: 400; font-size: 35px; line-height: 1.2; letter-spacing: -1px; margin: 17px 0 25px; }
+.success-content .success-label { font-size: 13px; }
+.success-summary { padding: 17px; }
+.success-summary p { margin: 4px 0; font-size: 15px; }
+.success-home { display: block; margin: 18px auto 5px; }
+.subscription-footer #subscription-demo-note { margin: 8px 0 0; font-size: 12px; }
+.chat-title { font-size: 16px; line-height: 1.3; margin: 0; text-align: center; }
+.chat-demo-note { font-size: 11px; line-height: 1.5; color: var(--muted); text-align: center; padding: 0 8px; margin: 14px 0; }
+.chat-scroll { flex: 1; padding-top: 4px; }
+.chat-message { width: fit-content; max-width: 89%; padding: 13px 15px; background: white; border-radius: 18px 18px 18px 4px; margin: 0 0 12px; border: 1px solid var(--line); overflow-wrap: anywhere; }
+.chat-message strong { font-size: 12px; color: #7c6291; }
+.chat-message p { font-size: 14px; line-height: 1.6; margin: 5px 0 0; white-space: pre-wrap; }
+.own-message { margin-left: auto; background: #f5e2ec; border-color: transparent; border-radius: 18px 18px 4px 18px; }
+.own-message strong { color: #785467; }
+.icebreaker { flex-shrink: 0; padding: 12px; margin: 8px 0 10px; border-radius: 17px; background: #f0e9de; }
+.icebreaker button { font-size: 13px; text-align: left; }
+.icebreaker p { font-size: 13px; line-height: 1.5; margin: 8px 0 0; }
+.chat-compose { display: flex; gap: 8px; flex-shrink: 0; }
+.chat-compose input { min-width: 0; flex: 1; background: white; border: 1px solid var(--line); border-radius: 24px; padding: 12px 15px; font-size: 16px; }
+.chat-compose button { width: 45px; height: 45px; border: 0; background: var(--ink); color: white; border-radius: 50%; font-size: 24px; cursor: pointer; }
+#chat-room .home-nav { margin-top: 10px; }
+@media (prefers-reduced-motion: no-preference) {
+    .demo-step, .chat-compose button { transition: transform 380ms ease, background 450ms ease; }
+    .demo-step:active, .chat-compose button:active { transform: scale(.97); }
+    #booking-success:not([hidden]) .booking-success-badge { animation: gentle-appearance 1000ms ease both; }
+    #booking-success:not([hidden]) .success-tick { stroke-dasharray: 1; animation: draw-check 1000ms 150ms ease both; }
+    #venue-revealed:not([hidden]), #company-revealed:not([hidden]) { animation: gentle-appearance 850ms ease both; }
+    .own-message { animation: gentle-appearance 450ms ease both; }
+}
+
+.meeting-preferences { margin: -12px 0 24px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.demo-reset { display: block; margin: 16px auto 0; font-size: 12px; line-height: 1.5; }

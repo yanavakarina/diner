@@ -51,6 +51,7 @@ function renderHomeEvents(now = new Date()) {
             list.append(group)
         }
         const details = getEventPresentation(event.type)
+        const savedMeeting = findSavedMeeting(event.type, event.iso)
         const card = document.createElement("button")
         card.type = "button"
         card.className = "button dinner-card home-event"
@@ -71,17 +72,27 @@ function renderHomeEvents(now = new Date()) {
         const time = document.createElement("small")
         time.textContent = event.time
         copy.append(date, name, time)
+        if (savedMeeting) {
+            card.classList.add("home-event-booked")
+            card.removeAttribute("aria-haspopup")
+            card.removeAttribute("aria-controls")
+            const note = document.createElement("small")
+            note.className = "home-booked-note"
+            note.textContent = "Вы записаны · подробности в «Событиях»"
+            copy.append(note)
+        }
         const arrow = document.createElement("span")
         arrow.className = "dinner-arrow"
         arrow.setAttribute("aria-hidden", "true")
         const arrowImage = document.createElement("img")
-        arrowImage.src = "assets/dinner-arrow.svg"
+        arrowImage.src = savedMeeting ? "assets/dinner-check.svg" : "assets/dinner-arrow.svg"
         arrowImage.alt = ""
         arrowImage.className = "dinner-indicator"
         arrow.append(arrowImage)
         card.append(icon, copy, arrow)
         card.addEventListener("click", function() {
-            eventDialogControl.open(event, card)
+            if (savedMeeting) openMeeting(savedMeeting.id)
+            else eventDialogControl.open(event, card)
         })
         group.append(card)
     }

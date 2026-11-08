@@ -6,13 +6,14 @@
     <meta name="theme-color" content="#f7f4ed">
     <title>diner — ужины с новыми людьми</title>
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css?v=preferences1">
+    <link rel="stylesheet" href="css/style.css?v=meetings1">
     <script defer src="js/date-picker.js"></script>
     <script defer src="js/energy.js?v=face-follow1"></script>
     <script defer src="js/profile-loading.js?v=loading3"></script>
     <script defer src="js/booking.js?v=booking2"></script>
-    <script defer src="js/home.js?v=district2"></script>
-    <script defer src="js/main.js?v=preferences2"></script>
+    <script defer src="js/home.js?v=meetings1"></script>
+    <script defer src="js/main.js?v=meetings1"></script>
+    <script defer src="js/meetings.js?v=meetings1"></script>
 </head>
 <body>
     <main class="app">
@@ -1000,6 +1001,8 @@
                 </div>
                 <footer class="screen-footer subscription-footer">
                     <p id="subscription-summary">2 490 ₽ за 3 месяца · демотариф</p>
+                    <button class="button button-dark" id="subscription-demo-buy" type="button" hidden>Оформить демоподписку</button>
+                    <p class="demo-note" id="subscription-demo-note" hidden>Без оплаты · для демонстрации</p>
                     <button class="button button-dark" id="subscription-skip" type="button">Пропустить</button>
                     <button class="text-button" type="button" disabled>Выбрать способ оплаты</button>
                 </footer>
@@ -1155,6 +1158,51 @@
                 </div>
                 <footer class="screen-footer"><button class="button button-dark" id="preferences-save" type="submit">Сохранить</button></footer>
             </form>
+        </section>
+
+
+        <section class="screen question-screen booking-success" id="booking-success" aria-labelledby="booking-success-title" hidden>
+            <div class="success-content">
+                <svg class="booking-success-badge" viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="booking-badge-gradient" x2="0" y2="1"><stop stop-color="#ff7d21"/><stop offset="1" stop-color="#ffb7ec"/></linearGradient></defs><circle cx="60" cy="60" r="51" fill="url(#booking-badge-gradient)"/><path class="success-tick" d="m37 60 16 16 31-35" fill="none" stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+                <p class="success-label">Место за столом ждёт вас</p>
+                <h1 id="booking-success-title" tabindex="-1">Вы идёте на ужин!</h1>
+                <div class="meeting-card success-summary"><p id="success-date"></p><p id="success-district"></p></div>
+                <p class="meeting-description">Мы подбираем компанию и место. Детали появятся перед встречей во вкладке «События».</p>
+                <p class="demo-note">Демонстрационная запись · без оплаты</p>
+            </div>
+            <footer class="screen-footer"><button class="button button-dark" id="success-events" type="button">Перейти в события</button><button class="text-button success-home" id="success-home" type="button">На главную</button></footer>
+        </section>
+
+        <section class="screen question-screen" id="meetings" aria-labelledby="meetings-title" hidden>
+            <header class="section-heading"><p class="section-eyebrow">Ваша компания уже ближе</p><h1 id="meetings-title" tabindex="-1">События</h1></header>
+            <div class="question-scroll section-scroll"><div id="meetings-list"></div><section id="meeting-connections" hidden><h2>Ваши знакомства</h2><p class="meeting-description">Люди, с которыми вы уже встретились. Групповой чат остаётся доступен.</p><div id="connections-list" class="people-list"></div></section></div>
+            <div data-app-nav="events"></div>
+        </section>
+
+        <section class="screen question-screen" id="meeting-view" aria-labelledby="meeting-title" hidden>
+            <header class="screen-header"><button class="back" id="meeting-back" type="button" aria-label="Вернуться к событиям"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p>Ваша встреча</p></header>
+            <div class="question-scroll section-scroll meeting-view-content">
+                <span class="meeting-status" id="meeting-status"></span><h1 id="meeting-title" tabindex="-1"></h1><p class="meeting-date" id="meeting-date"></p><p class="meeting-description" id="meeting-district"></p><p class="meeting-preferences" id="meeting-preferences"></p>
+                <section class="meeting-card countdown-card" id="countdown-card"><p>До раскрытия деталей</p><p class="meeting-countdown" id="meeting-countdown" role="timer" aria-label="Время до раскрытия деталей"></p><p class="meeting-description">Собираем компанию из 4–6 человек. Место и участники откроются за сутки до встречи.</p></section>
+                <section class="meeting-card" id="meeting-venue"><h2>Место встречи</h2><div id="venue-locked"><p class="locked-symbol" aria-hidden="true">✦</p><p class="meeting-description">Немного интриги. Скоро здесь появятся все детали.</p></div><div id="venue-revealed" hidden><h3 id="venue-name"></h3><p id="venue-address"></p><p class="meeting-description" id="venue-table"></p><a class="map-link" id="venue-map" target="_blank" rel="noopener noreferrer">Открыть район на карте ↗</a><p class="demo-note">Вымышленное место для макета. Карта показывает выбранный район.</p></div></section>
+                <section class="meeting-card"><h2>Ваша компания</h2><p class="meeting-description" id="company-locked">Подбираем людей, которым будет интересно вместе.</p><div id="company-revealed" hidden><p class="demo-note">Демонстрационная компания · 5 человек с вами</p><div class="people-list" id="meeting-people"></div></div></section>
+                <section class="meeting-card"><h2 id="meeting-chat-heading">Скоро познакомимся</h2><p class="meeting-description" id="meeting-chat-note"></p><button class="button button-dark" id="meeting-open-chat" type="button">Перейти в чат</button></section>
+                <div class="meeting-demo-controls"><p>Для показа в аудитории</p><button class="demo-step" id="meeting-advance" type="button"></button><button class="text-button demo-reset" id="meeting-reset-time" type="button" hidden>Демо · вернуть реальное время</button><p class="demo-note">Меняет время только для этой демовстречи</p></div>
+            </div><div data-app-nav="events"></div>
+        </section>
+
+        <section class="screen question-screen" id="chats" aria-labelledby="chats-title" hidden>
+            <header class="section-heading"><p class="section-eyebrow">Разговор начинается здесь</p><h1 id="chats-title" tabindex="-1">Чаты</h1></header>
+            <div class="question-scroll section-scroll" id="chats-list"></div><div data-app-nav="chats"></div>
+        </section>
+
+        <section class="screen question-screen" id="chat-room" aria-labelledby="chat-title" hidden>
+            <header class="screen-header"><button class="back" id="chat-back" type="button" aria-label="Вернуться к чатам"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="chat-title" id="chat-title" tabindex="-1">Чат встречи</h1></header>
+            <p class="chat-demo-note">Демо-чат · ваши сообщения видны только в этом браузере</p>
+            <div class="question-scroll chat-scroll" id="chat-messages" role="log" aria-live="polite" aria-label="Сообщения компании"></div>
+            <section class="icebreaker"><button class="text-button" id="question-next" type="button">Вопрос для знакомства ↻</button><p id="question-text" aria-live="polite"></p></section>
+            <form class="chat-compose" id="chat-form"><label class="visually-hidden" for="chat-input">Ваше сообщение</label><input id="chat-input" type="text" maxlength="1000" placeholder="Напишите компании…" autocomplete="off" required><button type="submit" aria-label="Отправить сообщение">↑</button></form>
+            <div data-app-nav="chats"></div>
         </section>
 
         <dialog class="event-dialog" id="event-dialog" aria-labelledby="event-title" aria-describedby="event-description">

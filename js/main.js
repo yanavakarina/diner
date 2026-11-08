@@ -540,6 +540,7 @@ document.getElementById("book-dinner").addEventListener("click", function() {
         return
     }
 
+    configureDemoSubscription(false)
     subscription.querySelector(".subscription-close").dataset.backScreen = "booking"
     updateSubscriptionSummary()
     showScreen(subscription, subscriptionTitle)
